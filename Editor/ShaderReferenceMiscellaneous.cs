@@ -2,7 +2,7 @@
  * @file         ShaderReferenceMath.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2018-12-05
- * @updated      2021-05-13
+ * @updated      2021-07-09
  *
  * @brief        杂项，一些算法技巧
  */
