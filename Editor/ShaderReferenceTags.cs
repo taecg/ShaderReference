@@ -2,7 +2,7 @@
  * @file         ShaderReferenceTags.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2018-12-08
- * @updated      2021-03-23
+ * @updated      2021-07-13
  *
  * @brief        SubShader中的内容
  */
@@ -16,9 +16,9 @@ namespace taecg.tools.shaderReference
 {
     public class ShaderReferenceTags : EditorWindow
     {
-        #region 数据成员
+#region 数据成员
         private Vector2 scrollPos;
-        #endregion
+#endregion
 
         public void DrawMainGUI()
         {
@@ -65,11 +65,12 @@ namespace taecg.tools.shaderReference
                     ShaderReferenceUtil.DrawOneContent("\"LightMode\" = \"UniversalForward\"", "用于前向渲染路径，所有的灯光都在这一个pass中执行，包括GI、自发光、雾效.(在不需要光照的pass中，可以不写LightMode)");
                     ShaderReferenceUtil.DrawOneContent("\"LightMode\" = \"SRPDefaultUnlit\"", "用于在额外需要一个pass时使用.");
                     ShaderReferenceUtil.DrawOneContent("\"LightMode\" = \"ShadowCaster\"", "用于生成阴影贴图ShadowMap(灯光视角下的深度信息)");
+                    // ShaderReferenceUtil.DrawOneContent("\"LightMode\" = \"UniversalGBuffer\"", "");
                     ShaderReferenceUtil.DrawOneContent("\"LightMode\" = \"DepthOnly\"", "用于生成相机下的深度信息,当管线资源上开启MSAA时会调用此pass.");
+                    ShaderReferenceUtil.DrawOneContent("\"LightMode\" = \"DepthNormals\"", "用于生成相机下的深度法线信息.");
                     ShaderReferenceUtil.DrawOneContent("\"LightMode\" = \"Meta\"", "仅在光照烘焙时才会使用此Pass,用于间接光的反弹.");
                     ShaderReferenceUtil.DrawOneContent("\"LightMode\" = \"Universal2D\"", "用于URP使用2D渲染器时绘制物体的Pass，不受光照影响.");
                     ShaderReferenceUtil.DrawOneContent("\"ShaderModel\" = \"2.0\"", "相当于#pragma target 2.0.");
-                    //ShaderReferenceUtil.DrawOneContent("\"UniversalMaterialType\" = \"SimpleLit\"", "");
                     break;
             }
 
