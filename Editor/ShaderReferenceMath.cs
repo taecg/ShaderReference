@@ -72,6 +72,8 @@ namespace taecg.tools.shaderReference
             "{\n" +
             "    return a.yzx * b.zxy - a.zxy * b.yzx;\n" +
             "}");
+            ShaderReferenceUtil.DrawOneContent("ddx(v)", "当前像素右边的v值-当前像素的v值(水平方向的差值),假如v是坐标,那就是求坐标差");
+            ShaderReferenceUtil.DrawOneContent("ddy(v)", "当前像素下边的v值-当前像素的v值(垂直方向的差值)");
             ShaderReferenceUtil.DrawOneContent("degrees(x)", "将x从弧度转换成角度\n" +
             "float degrees(float x)\n" +
             "{\n" +
@@ -100,6 +102,7 @@ namespace taecg.tools.shaderReference
             "{\n" +
             "    return x - floor(x);\n" +
             "}");
+            ShaderReferenceUtil.DrawOneContent("fwidth(v)", "当前像素与它右边及下边像素的差值,abs( ddx(v) )+ abs(ddy(v))");
             ShaderReferenceUtil.DrawOneContent("length (v)", "返回一个向量的模，即 sqrt(dot(v,v))");
             ShaderReferenceUtil.DrawOneContent("lerp (A,B,alpha)", "线性插值.\n如果alpha=0，则返回A;\n如果alpha=1，则返回B;\n否则返回A与B的混合值;内部执行:A + alpha*(B-A)\n" +
             "float3 lerp(float3 A, float3 B, float alpha)\n" +
