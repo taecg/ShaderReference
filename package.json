@@ -1,0 +1,14 @@
+{
+    "name": "com.taecg.shaderReference",
+    "version": "1.0.0",
+    "displayName": "Shader参考大全",
+    "description": "有关ShaderLab的语法大全(支持BuiltIn和URP).",
+    "unity": "2019.1",
+    "keywords": [
+        "Shader"
+    ],
+    "author": {
+        "name": "taecg",
+        "email": "taecg@qq.com"
+    }
+}
