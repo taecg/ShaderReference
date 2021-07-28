@@ -163,7 +163,7 @@ namespace taecg.tools.shaderReference
                     ShaderReferenceUtil.DrawOneContent("tex1D(samper1D tex,float s)", "一维纹理采样");
                     ShaderReferenceUtil.DrawOneContent("tex2D(samper2D tex,float2 s)", "二维纹理采样");
                     ShaderReferenceUtil.DrawOneContent("tex2Dlod(samper2D tex,float4 s)", "二维纹理采样,s.w表示采样的是mipmap的几级,仅在ES3.0以上支持.");
-                    ShaderReferenceUtil.DrawOneContent("tex2DProj(samper2D tex,float4 s)", "二维投影纹理采样");
+                    ShaderReferenceUtil.DrawOneContent("tex2DProj(samper2D tex,float4 s)", "二维投影纹理采样,uv使用s.xy/s.w");
                     ShaderReferenceUtil.DrawOneContent("texCUBE(samperCUBE tex,float3 s)", "立方体纹理采样");
                     break;
                 case ShaderReferenceEditorWindow.Pipline.URP:
