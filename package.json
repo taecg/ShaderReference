@@ -10,5 +10,9 @@
     "author": {
         "name": "taecg",
         "email": "taecg@qq.com"
+    },
+    "repository": {
+        "url": "https://github.com/taecg/ShaderReference.git",
+        "type": "git"
     }
 }
