@@ -2,7 +2,7 @@
  * @file         ShaderReferenceAbout.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2018-11-10
- * @updated      2021-06-25
+ * @updated      2021-07-28
  *
  * @brief       制作名单
  */
@@ -16,7 +16,7 @@ namespace taecg.tools.shaderReference
 {
     public class ShaderReferenceAbout : EditorWindow
     {
-#region 数据成员
+        #region 数据成员
         private Vector2 scrollPos;
         private Texture talogo
         {
@@ -33,7 +33,7 @@ namespace taecg.tools.shaderReference
                 return AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath("08a00299070e2c345b3a1656b1965dfe"), typeof(Texture)) as Texture;
             }
         }
-#endregion
+        #endregion
 
         public void DrawMainGUI()
         {
@@ -44,7 +44,7 @@ namespace taecg.tools.shaderReference
             GUIStyle labelStyle = new GUIStyle("label");
             labelStyle.fontStyle = FontStyle.Italic;
             labelStyle.alignment = TextAnchor.MiddleCenter;
-            EditorGUILayout.LabelField("by taecg@qq.com  updated 2021/07/13", labelStyle);
+            EditorGUILayout.LabelField("by taecg@qq.com  updated 2021/07/28", labelStyle);
 
             GUIStyle style = new GUIStyle();
             style.alignment = TextAnchor.MiddleCenter;
