@@ -2,7 +2,7 @@
  * @file         ShaderReferenceMath.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2018-12-05
- * @updated      2021-07-09
+ * @updated      2021-07-30
  *
  * @brief        杂项，一些算法技巧
  */
@@ -72,6 +72,7 @@ namespace taecg.tools.shaderReference
             ShaderReferenceUtil.DrawOneContent("将0-1的值控制在某个自定义的区间内", "frac(x*n+n);\n比如frac(i.uv*3.33+3.33);就是将0-1的uv值重新定义为0.33-0.66");
             ShaderReferenceUtil.DrawOneContent("随机", "1.frac(sin(dot(i.uv.xy, float2(12.9898, 78.233))) * 43758.5453);\n2.frac(sin(x)*n);");
             ShaderReferenceUtil.DrawOneContent("旋转", "fixed t=_Time.y;\nfloat2 rot= cos(t)*i.uv+sin(t)*float2(i.uv.y,-i.uv.x);");
+            ShaderReferenceUtil.DrawOneContent("从中心缩放纹理", "half2 offset = (0.5-i.uv.xy)*_Offset;\nhalf4 baseMap = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv.xy + offset);");
             ShaderReferenceUtil.DrawOneContent("序列图", "splitUV是把原有的UV重新定位到左上角的第一格UV上，_Sequence.xy表示的是纹理是由几x几的格子组成的,_Sequence.z表示的是走序列的快慢." +
                 "\nfloat2 splitUV = uv * (1/_Sequence.xy) + float2(0,_Sequence.y - 1/_Sequence.y);" +
                 "\nfloat time = _Time.y * _Sequence.z;" +
