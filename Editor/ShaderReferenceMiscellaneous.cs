@@ -2,7 +2,7 @@
  * @file         ShaderReferenceMath.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2018-12-05
- * @updated      2021-07-30
+ * @updated      2021-10-20
  *
  * @brief        杂项，一些算法技巧
  */
@@ -118,6 +118,12 @@ namespace taecg.tools.shaderReference
                 "worldPos.y = 2.47;\n" +
                 "worldPos.xz += fixed2(阴影X方向,阴影Z方向)*v.vertex.y;\n" +
                 "o.pos = mul(UNITY_MATRIX_VP,worldPos);");
+
+            ShaderReferenceUtil.DrawTitle("颜色 ");
+            ShaderReferenceUtil.DrawOneContent("去色", "方法1：Luminance(float rgb)\n" +
+            "方法2：dot(rgb,fixed3(0.22,0.707,0.071))\n" +
+            "方法3：dot(rgb,half3(0.299,0.587,0.114))\n" +
+            "方法4：(r+g+b)/3");
 
             ShaderReferenceUtil.DrawTitle("光照");
             ShaderReferenceUtil.DrawOneContent("Matcap ", "o.normalWS = TransformObjectToWorldNormal(v.normalOS);\n" +

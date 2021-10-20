@@ -2,7 +2,7 @@
  * @file         ShaderReferenceBuildInVariables.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2019-02-26
- * @updated      2021-03-11
+ * @updated      2021-10-20
  *
  * @brief        内置变量相关
  */
@@ -28,7 +28,6 @@ namespace taecg.tools.shaderReference
             ShaderReferenceUtil.DrawOneContent("UNITY_INITIALIZE_OUTPUT(type,name)", "由于HLSL编缉器不接受没有初始化的数据，所以为了支持所有平台，从而需要使用此方法进行初始化.");
             ShaderReferenceUtil.DrawOneContent("TRANSFORM_TEX(i.uv,_MainTex)", "对UV进行Tiling与Offset变换");
             ShaderReferenceUtil.DrawOneContent("float3 UnityWorldSpaceLightDir( float3 worldPos )", "返回顶点到灯光的向量");
-            ShaderReferenceUtil.DrawOneContent("Luminance(float rgb)", "去色,内部公式为：dot(rgb,fixed3(0.22,0.707,0.071)).");
 
             ShaderReferenceUtil.DrawTitle("Camera and Screen");
             switch (ShaderReferenceEditorWindow.mPipline)
