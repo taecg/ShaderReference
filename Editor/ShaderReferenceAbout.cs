@@ -44,7 +44,7 @@ namespace taecg.tools.shaderReference
             GUIStyle labelStyle = new GUIStyle("label");
             labelStyle.fontStyle = FontStyle.Italic;
             labelStyle.alignment = TextAnchor.MiddleCenter;
-            EditorGUILayout.LabelField("by taecg@qq.com  updated 2021/10/20", labelStyle);
+            EditorGUILayout.LabelField("by taecg@qq.com  updated 2021/11/01", labelStyle);
 
             GUIStyle style = new GUIStyle();
             style.alignment = TextAnchor.MiddleCenter;

@@ -2,7 +2,7 @@
  * @file         ShaderReferenceMath.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2018-12-05
- * @updated      2021-10-20
+ * @updated      2021-11-01
  *
  * @brief        杂项，一些算法技巧
  */
@@ -129,13 +129,56 @@ namespace taecg.tools.shaderReference
             ShaderReferenceUtil.DrawOneContent("Matcap ", "o.normalWS = TransformObjectToWorldNormal(v.normalOS);\n" +
             "o.uv.zw = mul(UNITY_MATRIX_V, float4(o.normalWS, 0.0)).xy * 0.5 + 0.5;");
 
-            ShaderReferenceUtil.DrawTitle("其它 ");
+            ShaderReferenceUtil.DrawTitle("其它");
             ShaderReferenceUtil.DrawOneContent("菲涅尔 ", "fixed4 rimColor = fixed4 (0, 0.4, 1, 1);\n " +
                 "half3 worldViewDir = normalize (UnityWorldSpaceViewDir (i.worldPos));\n " +
                 "float ndotv = dot (i.normal, worldViewDir);\n " +
                 "float fresnel = (0.2 + 2.0 * pow (1.0 - ndotv, 2.0));\n " +
                 "fixed4 col = rimColor * fresnel;");
-            ShaderReferenceUtil.DrawOneContent("XRay射线 ", "1. 新建一个Pass\n2.设置自己想要的Blend\n3.Zwrite Off关闭深度写入\n4.Ztest greater深度测试设置为大于 ");
+            ShaderReferenceUtil.DrawOneContent("XRay射线", "1. 新建一个Pass\n2.设置自己想要的Blend\n3.Zwrite Off关闭深度写入\n4.Ztest greater深度测试设置为大于 ");
+            ShaderReferenceUtil.DrawOneContent("Dither",
+                "//先求出整数型的屏幕像素UV(求余后)\n" +
+                "float2 uv = (uint2)i.positionCS.xy%行数;\n" +
+                "//然后调用相应的方法\n" +
+                "float Dither2x2(float2 uv)\n" +
+                "{\n" +
+                "   float D[4] =\n" +
+                "   {\n" +
+                "       0,2,\n" +
+                "       3,1\n" +
+                "   };\n" +
+                "   uint index = uv.x * 2 + uv.y;\n" +
+                "   return D[index] / 5;\n" +
+                "}\n\n" +
+                "float Dither4x4(float2 uv)\n" +
+                "{\n" +
+                "   float D[16] =\n" +
+                "   {\n" +
+                "       0,8,2,10,\n" +
+                "       12,4,14,6,\n" +
+                "       3,11,1,9,\n" +
+                "       15,7,13,5\n" +
+                "   };\n" +
+                "   uint index = uv.x * 4 + uv.y;\n" +
+                "   return D[index] / 17;\n" +
+                "}\n\n" +
+                "float Dither8x8(float2 uv)\n" +
+                "{\n" +
+                "   float D[64] =\n" +
+                "   {\n" +
+                "       0,32,8,40,2,34,10,42,\n" +
+                "       48,16,56,24,50,18,58,26,\n" +
+                "       12,44,4,36,14,46,6,38,\n" +
+                "       60,28,52,20,62,30,54,22,\n" +
+                "       3,35,11,43,1,33,9,41,\n" +
+                "       51,19,59,27,49,17,57,25,\n" +
+                "       15,47,7,39,13,45,5,37,\n" +
+                "       63,31,55,23,61,29,53,21\n" +
+                "   };\n" +
+                "   uint index = uv.x * 8 + uv.y;\n" +
+                "   return D[index] / 65;\n" +
+                "}\n");
+
             EditorGUILayout.EndScrollView();
         }
     }
