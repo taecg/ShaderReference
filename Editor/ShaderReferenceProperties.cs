@@ -2,7 +2,7 @@
  * @file         ShaderReferenceProperties.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2018-11-10
- * @updated      2021-03-25
+ * @updated      2021-11-10
  *
  * @brief        Properties（属性相关）
  */
@@ -65,8 +65,8 @@ namespace taecg.tools.shaderReference
             ShaderReferenceUtil.DrawOneContent("[IntRange]", "必须使用在Range属性之上，以使在材质面板中滑动时只能生成整数");
             ShaderReferenceUtil.DrawOneContent("[Toggle]", "开关,加在数值类型前,可使材质面板中的数值变成开关，0是关，1是开");
             ShaderReferenceUtil.DrawOneContent("[ToggleOff]", "与Toggle相当，0是开，1是关");
-            ShaderReferenceUtil.DrawOneContent("[Enum(Off, 0, On, 1)]", "数值枚举,可直接在cg中使用此关键字来替代数字.");
-            ShaderReferenceUtil.DrawOneContent("[KeywordEnum (Enum0, Enum1, Enum2, Enum3, Enum4, Enum5, Enum6, Enum7, Enum8)]", "关键字枚举,可最多定义8个,需要#pragma multi_compile _XXX_ENUM0 _XXX_ENUM1 ...来依次声明变体关键字,XXX为这条属性中声明的变量名,在cg/hlsl中可以通过#if #elif #endif分别做判断.");
+            ShaderReferenceUtil.DrawOneContent("[Enum(Off, 0, On, 1)]", "数值枚举,可直接在cg中使用此关键字来替代数字,最多可定义7个，超出后无法以下拉列表框的形式展现.");
+            ShaderReferenceUtil.DrawOneContent("[KeywordEnum (Enum0, Enum1, Enum2, Enum3, Enum4, Enum5, Enum6, Enum7, Enum8)]", "关键字枚举,需要#pragma multi_compile _XXX_ENUM0 _XXX_ENUM1 ...来依次声明变体关键字,XXX为这条属性中声明的变量名,在cg/hlsl中可以通过#if #elif #endif分别做判断.");
             ShaderReferenceUtil.DrawOneContent("[Enum (UnityEngine.Rendering.CullMode)]", "内置枚举,可在Enum()内直接调用Unity内部的枚举.");
             ShaderReferenceUtil.DrawOneContent("[NoScaleOffset]", "只能加在纹理属性前，使其隐藏材质面板中的Tiling和Offset");
             ShaderReferenceUtil.DrawOneContent("[Normal]", "只能加在纹理属性前，标记此纹理是用来接收法线贴图的，当用户指定了非法线的纹理时会在材质面板上进行警告提示");
