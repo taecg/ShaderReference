@@ -31,9 +31,9 @@ namespace taecg.tools.shaderReference
                 "● 2.0: \n" +
                 "● 2.5: derivatives\n" +
                 "● 3.0: 2.5 + interpolators10 + samplelod + fragcoord\n" +
-                "● 3.5: 3.0 + interpolators15 + mrt4 + integers + 2darray + instancing\n" +
+                "● 3.5(相当于OpenGL ES3.0): 3.0 + interpolators15 + mrt4 + integers + 2darray + instancing\n" +
                 "● 4.0: 3.5 + geometry\n" +
-                "● 4.5: 3.5 + compute + randomwrite\n" +
+                "● 4.5(相当于OpenGL ES3.1): 3.5 + compute + randomwrite\n" +
                 "● 4.6: 4.0 + cubearray + tesshw + tessellation\n" +
                 "● 5.0: 4.0 + compute + randomwrite + tesshw + tessellation");
 
