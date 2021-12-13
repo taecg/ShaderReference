@@ -169,6 +169,8 @@ namespace taecg.tools.shaderReference
                 case ShaderReferenceEditorWindow.Pipline.URP:
                     ShaderReferenceUtil.DrawOneContent("TEXTURE2D (textureName);", "二维纹理的定义(纹理与采样器分离定义),此功能在OpenGL ES2.0上不支持，会使用原来sampler2D的形式.\n" +
                         "textureName:Properties中声明的2D纹理.");
+                    ShaderReferenceUtil.DrawOneContent("TEXTURECUBE (textureName);", "立方体纹理的定义(纹理与采样器分离定义),此功能在OpenGL ES2.0上不支持，会使用原来samplerCube的形式.\n" +
+                    "textureName:Properties中声明的立方体纹理.");
                     ShaderReferenceUtil.DrawOneContent("SAMPLER(samplerName);", "采样器的定义(纹理与采样器分离定义),采样器是指纹理的过滤模式与重复模式,此功能在OpenGL ES2.0上不支持，相当于没写.\n" +
                         "1.SAMPLER(sampler_textureName):sampler+纹理名称，这种定义形式是表示采用textureName这个纹理Inspector面板中的采样方式.\n" +
                         "2.SAMPLER(_filter_wrap):比如SAMPLER(sampler_linear_repeat),使用自定义的采样器设置，自定义的采样器一定要同时包含过滤模式<filter>与重复模式<wrap>的设置，注意这种自定义写法很多移动平台不支持！.\n" +
@@ -191,6 +193,10 @@ namespace taecg.tools.shaderReference
                     "samplerName:此纹理所使用的采样器设置\n" +
                     "coord:采样用的UV\n" +
                     "bias:mipmap偏移量,比如0=默认,-1=比当前级别更清晰一级,1=比当前级别更模糊一级.");
+                    ShaderReferenceUtil.DrawOneContent("SAMPLE_TEXTURECUBE(textureName, samplerName, coord);", "进行立方体纹理采样操作\n" +
+                    "textureName:Properties中声明的CUBE纹理名称\n" +
+                    "samplerName:此纹理所使用的采样器设置\n" +
+                    "coord:采样用的UV");
                     break;
             }
 
