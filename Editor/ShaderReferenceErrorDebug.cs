@@ -2,7 +2,7 @@
  * @file         ShaderReferenceErrorDebug.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2020-02-24
- * @updated      2020-09-10
+ * @updated      2021-12-15
  *
  * @brief        Shader中的常见报错信息
  */
@@ -24,6 +24,9 @@ namespace taecg.tools.shaderReference
         public void DrawMainGUI()
         {
             scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
+            ShaderReferenceUtil.DrawTitle("SRPBatcher合批失败的原因");
+            ShaderReferenceUtil.DrawOneContent("UnityPerMaterial CBuffer inconsistent size inside a SubShader()", "同SubShader内，所有pass的CBUFFER_START(UnityPerMaterial)内容须完全一模一样.");
+
             ShaderReferenceUtil.DrawTitle("常见报错");
             ShaderReferenceUtil.DrawOneContent("Did not find shader kernel 'frag'to compile at line", "找不到片断着色器，检查下是否有正确编写片断着色器fragment.");
             ShaderReferenceUtil.DrawOneContent("syntax error : unexpected token ')'at line", "这一行存在语法错误,检测这行是否少了什么，如果没有看下它的前一句是否少了最后的分号.");
