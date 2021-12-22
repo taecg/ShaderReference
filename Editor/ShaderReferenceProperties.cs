@@ -2,7 +2,7 @@
  * @file         ShaderReferenceProperties.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2018-11-10
- * @updated      2021-11-10
+ * @updated      2021-12-22
  *
  * @brief        Properties（属性相关）
  */
@@ -46,10 +46,17 @@ namespace taecg.tools.shaderReference
             switch (ShaderReferenceEditorWindow.mPipline)
             {
                 case ShaderReferenceEditorWindow.Pipline.BuildIn:
-                    ShaderReferenceUtil.DrawOneContent("_MainTexArry (\"TextureArry\", 2DArray) = \"white\" {}", "类型:2D纹理数组\nCg/HLSL:UNITY_DECLARE_TEX2DARRAY(_MainTexArry);\n默认值有white、black、gray、bump以及空，空就是white\n仅支持DX10、OpenGL3.0、Metal及以上版本");
+                    ShaderReferenceUtil.DrawOneContent("_MainTexArry (\"TextureArry\", 2DArray) = \"white\" {}", "类型:2D纹理数组\n" +
+                    "UNITY_DECLARE_TEX2DARRAY(_MainTexArry);\n" +
+                    "默认值有white、black、gray、bump以及空，空就是white\n" +
+                    "仅支持DX10、OpenGL3.0、Metal及以上版本");
                     break;
                 case ShaderReferenceEditorWindow.Pipline.URP:
-                    ShaderReferenceUtil.DrawOneContent("_MainTexArray (\"TextureArray\", 2DArray) = \"white\" {}", "类型:2D纹理数组\nHLSL:TEXTURE2D_ARRAY(_MainTexArry);  SAMPLER(sampler_MainTexArry);\n默认值有white、black、gray、bump以及空，空就是white\n仅支持DX10、OpenGL3.0、Metal及以上版本");
+                    ShaderReferenceUtil.DrawOneContent("_MainTexArray (\"TextureArray\", 2DArray) = \"white\" {}", "类型:2D纹理数组\n" +
+                    "TEXTURE2D_ARRAY(_MainTexArry);  SAMPLER(sampler_MainTexArry);\n" +
+                    "SAMPLE_TEXTURE2D_ARRAY(_MainTexArry, sampler_MainTexArry, i.uv,_Index);\n" +
+                    "默认值有white、black、gray、bump以及空，空就是white\n" +
+                    "仅支持DX10、OpenGL3.0、Metal及以上版本");
                     break;
             }
             ShaderReferenceUtil.DrawOneContent("_MainTex3D (\"Texture\", 3D) = \"white\" {}", "类型:3D纹理\nCg/HLSL:sampler3D/sampler3D_half/sampler3D_float");
