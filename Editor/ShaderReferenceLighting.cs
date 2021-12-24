@@ -2,7 +2,7 @@
  * @file         ShaderReferenceLighting.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2019-10-21
- * @updated      2021-03-17
+ * @updated      2021-12-24
  *
  * @brief        Shader中的光照相关
  */
@@ -55,8 +55,6 @@ namespace taecg.tools.shaderReference
                 "G(l,v,h):\t几何函数(Geometry Function),描述微平面自成阴影的属性,即微表面法向m = h的并未被遮蔽的表面点的百分比.\n" +
                 "4cos(n·l)cos(n·v):\t校正因子(correctionfactor)作为微观几何的局部空间和整个宏观表面的局部空间之间变换的微平面量的校正.");
 
-
-
             switch (ShaderReferenceEditorWindow.mPipline)
             {
                 case ShaderReferenceEditorWindow.Pipline.BuildIn:
@@ -77,7 +75,7 @@ namespace taecg.tools.shaderReference
                         "   o.tSpace1 = float3(worldTangent.y,worldBinormal.y,worldNormal.y);\n" +
                         "   o.tSpace2 = float3(worldTangent.z,worldBinormal.z,worldNormal.z);\n" +
                         "4.在片断着色器中计算出世界空间下的法线,然后再拿去进行需要的计算:\n" +
-                        "   half3 normalTex = UnpackNormal(tex2D(_NormalTex,i.uv));\n" +
+                        "   half3 normalTex = UnpackNormalWithScale(tex2D(_NormalTex,i.uv),scale);\n" +
                         "   half3 worldNormal = half3(dot(i.tSpace0,normalTex),dot(i.tSpace1,normalTex),dot(i.tSpace2,normalTex));");
                     ShaderReferenceUtil.DrawTitle("ShadowMap阴影");
                     ShaderReferenceUtil.DrawOneContent("生成阴影", "添加\"LightMode\" = \"ShadowCaster\"的Pass.\n" +
@@ -132,7 +130,7 @@ namespace taecg.tools.shaderReference
                         "   half sign = v.tangentOS.w * GetOddNegativeScale();\n" +
                         "   o.bitangentWS.xyz = cross(o.normalWS, o.tangentWS) * sign;\n" +
                         "4.在片断着色器中计算出世界空间下的法线,然后再拿去进行需要的计算:\n" +
-                        "   half3 normalMap = UnpackNormal(SAMPLE_TEXTURE2D(_NormalMap, sampler_NormalMap, i.uv));\n" +
+                        "   half3 normalMap = UnpackNormal(SAMPLE_TEXTURE2D(_NormalMap, sampler_NormalMap, i.uv),scale);\n" +
                         "   half3 normalWS = mul(normalMap,half3x3(i.tangentWS.xyz, i.bitangentWS.xyz, i.normalWS.xyz));");
                     ShaderReferenceUtil.DrawOneContent("法线混合", "方法一：\n" +
                     "return normalize(float3(A.rg + B.rg, A.b * B.b));\n" +
