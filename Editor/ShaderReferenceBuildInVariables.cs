@@ -2,7 +2,7 @@
  * @file         ShaderReferenceBuildInVariables.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2019-02-26
- * @updated      2021-10-20
+ * @updated      2022-01-04
  *
  * @brief        内置变量相关
  */
@@ -102,18 +102,17 @@ namespace taecg.tools.shaderReference
             ShaderReferenceUtil.DrawOneContent("_CosTime", "t是时间的余弦值，返回值(-1~1):\nx = t/8\ny = t/4\nz = t/2\nw = t");
             ShaderReferenceUtil.DrawOneContent("unity_DeltaTime", "dt是时间增量,smoothDt是平滑时间\nx = dt\ny = 1/dt\nz = smoothDt\nz = 1/smoothDt");
 
-            ShaderReferenceUtil.DrawTitle("Lighting(ForwardBase & ForwardAdd)");
-            ShaderReferenceUtil.DrawOneContent("_LightColor0", "主平行灯的颜色值,rgb = 颜色x亮度; a = 亮度");
-            ShaderReferenceUtil.DrawOneContent("_WorldSpaceLightPos0", "平行灯:\t(xyz=位置,z=0)),已归一化\n其它类型灯:\t(xyz=位置,z=1)");
-            ShaderReferenceUtil.DrawOneContent("unity_WorldToLight", "从世界空间转换到灯光空间下，等同于旧版的_LightMatrix0.");
-            //ShaderReferenceUtil.DrawOneContent("unity_4LightPosX0,unity_4LightPosY0,unity_4LightPosZ0", "");
-            //ShaderReferenceUtil.DrawOneContent("unity_4LightAtten0", "");
-            //ShaderReferenceUtil.DrawOneContent("unity_LightColor", "");
-            //ShaderReferenceUtil.DrawOneContent("unity_WorldToShadow", ""); 
-
             switch (ShaderReferenceEditorWindow.mPipline)
             {
                 case ShaderReferenceEditorWindow.Pipline.BuildIn:
+                    ShaderReferenceUtil.DrawTitle("Lighting(ForwardBase & ForwardAdd)");
+                    ShaderReferenceUtil.DrawOneContent("_LightColor0", "主平行灯的颜色值,rgb = 颜色x亮度; a = 亮度");
+                    ShaderReferenceUtil.DrawOneContent("_WorldSpaceLightPos0", "平行灯:\t(xyz=位置,z=0)),已归一化\n其它类型灯:\t(xyz=位置,z=1)");
+                    ShaderReferenceUtil.DrawOneContent("unity_WorldToLight", "从世界空间转换到灯光空间下，等同于旧版的_LightMatrix0.");
+                    //ShaderReferenceUtil.DrawOneContent("unity_4LightPosX0,unity_4LightPosY0,unity_4LightPosZ0", "");
+                    //ShaderReferenceUtil.DrawOneContent("unity_4LightAtten0", "");
+                    //ShaderReferenceUtil.DrawOneContent("unity_LightColor", "");
+                    //ShaderReferenceUtil.DrawOneContent("unity_WorldToShadow", ""); 
                     ShaderReferenceUtil.DrawTitle("Fog and Ambient");
                     ShaderReferenceUtil.DrawOneContent("unity_AmbientSky", "环境光（Gradient）中的Sky Color.");
                     ShaderReferenceUtil.DrawOneContent("unity_AmbientEquator", "环境光（Gradient）中的Equator Color.");
