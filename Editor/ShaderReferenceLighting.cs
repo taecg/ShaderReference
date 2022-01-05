@@ -130,7 +130,7 @@ namespace taecg.tools.shaderReference
                         "   half sign = v.tangentOS.w * GetOddNegativeScale();\n" +
                         "   o.bitangentWS.xyz = cross(o.normalWS, o.tangentWS) * sign;\n" +
                         "4.在片断着色器中计算出世界空间下的法线,然后再拿去进行需要的计算:\n" +
-                        "   half3 normalMap = UnpackNormal(SAMPLE_TEXTURE2D(_NormalMap, sampler_NormalMap, i.uv),scale);\n" +
+                        "   half3 normalMap = UnpackNormalScale(SAMPLE_TEXTURE2D(_NormalMap, sampler_NormalMap, i.uv),scale);\n" +
                         "   half3 normalWS = mul(normalMap,half3x3(i.tangentWS.xyz, i.bitangentWS.xyz, i.normalWS.xyz));");
                     ShaderReferenceUtil.DrawOneContent("法线混合", "方法一：\n" +
                     "return normalize(float3(A.rg + B.rg, A.b * B.b));\n" +
