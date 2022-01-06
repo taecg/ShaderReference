@@ -2,7 +2,7 @@
  * @file         ShaderReferencePredefinedMacros.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2019-04-19
- * @updated      2021-04-26
+ * @updated      2022-01-06
  *
  * @brief        Unity官方预定义的宏
  */
@@ -71,6 +71,7 @@ namespace taecg.tools.shaderReference
             ShaderReferenceUtil.DrawOneContent("V2F_SHADOW_CASTER;", "用于\"LightMode\" = \"ShadowCaster\"中,相当于定义了float4 pos:SV_POSITION.");
             // ShaderReferenceUtil.DrawOneContent ("UNITY_TRANSFER_LIGHTING(o,v.texcoord1.xy);", "");
             ShaderReferenceUtil.DrawTitle("Other");
+            ShaderReferenceUtil.DrawOneContent("UNITY_SHADER_NO_UPGRADE", "另Shader不自动更新API,只需把语句用注释的形式写在shader中任意位置即可.");
             switch (ShaderReferenceEditorWindow.mPipline)
             {
                 case ShaderReferenceEditorWindow.Pipline.BuildIn:
