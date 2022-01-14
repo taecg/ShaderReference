@@ -1,5 +1,11 @@
 ## 更新日志
 
+### v1.0.4
+* 新增#pragma editor_sync_compilation
+* 新增#include
+* 新增#include_with_pragmas
+* 新增AlphaToMask、Conservative、ZClip
+
 ### v1.0.3
 * 增加SRPBatcher合批失败的原因.
 

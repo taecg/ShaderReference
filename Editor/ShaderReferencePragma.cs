@@ -2,7 +2,7 @@
  * @file         ShaderReferencePragma.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2019-01-17
- * @updated      2021-03-23
+ * @updated      2022-01-14
  *
  * @brief        Pass中的Pragma
  */
@@ -85,6 +85,9 @@ namespace taecg.tools.shaderReference
                     break;
                 case ShaderReferenceEditorWindow.Pipline.URP:
                     ShaderReferenceUtil.DrawOneContent("#pragma prefer_hlslcc gles", "在OpenGL ES2.0中使用HLSLcc编译器,目前除了OpenGL ES2.0全都默认使用HLSLcc编译器.");
+                    ShaderReferenceUtil.DrawOneContent("#include \"XXX.hlsl\"", "引入hlsl文件");
+                    ShaderReferenceUtil.DrawOneContent("#include_with_pragmas \"XXX.hlsl\"", "引入hlsl文件,同时也会使用hlsl文件中的#pragma指令");
+                    ShaderReferenceUtil.DrawOneContent("#pragma editor_sync_compilation", "强制某个Shader以同步的方式进行编绎(当此Shader的某个变体被第一次渲染时，在还没有编绎完成前不会渲染出来;如果不加此指令则会先用一个青色的临时占位进行渲染显示。)");
                     break;
             }
 
@@ -109,7 +112,7 @@ namespace taecg.tools.shaderReference
                 "4. gles3 - OpenGL ES 3.x\n" +
                 "5. metal - iOS/Mac Metal\n" +
                 "6. vulkan - Vulkan\n" +
-                "7. d3d11_9x - Direct3D 11 9.x feature level, as commonly used on WSA platforms\n" +
+                "7. d3d11_9x - Direct3D 11 9.x功能级别，通常在WSA平台上使用\n" +
                 "8. xboxone - Xbox One\n" +
                 "9. ps4 - PlayStation 4\n" +
                 "10.psp2 - PlayStation Vita\n" +

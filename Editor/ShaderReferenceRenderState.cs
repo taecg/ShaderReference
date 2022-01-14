@@ -2,7 +2,7 @@
  * @file         ShaderReferenceRenderState.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2018-12-29
- * @updated      2021-02-05
+ * @updated      2022-01-25
  *
  * @brief        SubShader中渲染设置
  */
@@ -82,6 +82,7 @@ namespace taecg.tools.shaderReference
                 "\nAlways：永远通过。");
             ShaderReferenceUtil.DrawOneContent("ZTest[unity_GUIZTestMode]", "unity_GUIZTestMode用于UI材质中，此值默认为LEqual,仅当UI中Canvas模式为Overlay时，值为Always.");
             ShaderReferenceUtil.DrawOneContent("ZWrite On | Off", "深度写入，默认值为On。\nOn：向深度缓冲中写入深度值。\nOff：关闭深度写入。");
+            ShaderReferenceUtil.DrawOneContent("ZClip True | False", "设置GPU的深度剪辑模式以此来决定如何处理近平面和远平面之外的片元深度.\nFalse表示将GPU的深度剪辑模式设置为Clmap,这对于模板阴影渲染很有用,这意味着当几何体超出远平面时不需要特殊处理，从而减少渲染操作。但是，它可能会导致不正确的Z排序。");
             ShaderReferenceUtil.DrawOneContent("Offset Factor, Units", "深度偏移，offset = (m * factor) + (r * units)，默认值为0,0" +
                 "\nm：指多边形的深度斜率（在光栅化阶段计算得出）中的最大值,多边形越是与近裁剪面平行，m值就越接近0。" +
                 "\nr：表示能产生在窗口坐标系的深度值中可分辨的差异的最小值，r是由具体实现OpenGL的平台指定的一个常量。" +
@@ -100,7 +101,6 @@ namespace taecg.tools.shaderReference
             ShaderReferenceUtil.DrawOneContent("Blend SrcFactor DstFactor, SrcFactorA DstFactorA", "对RGB和A通道分别做混合操作。");
             ShaderReferenceUtil.DrawOneContent("BlendOp Op", "混合时的操作运算符，默认值为Add（加法操作）。");
             ShaderReferenceUtil.DrawOneContent("BlendOp OpColor, OpAlpha", "对RGB和A通道分别指定混合运算符。");
-            ShaderReferenceUtil.DrawOneContent("AlphaToMask On | Off", "当值为On时，在使用MSAA时，会根据像素结果将alpha值进行修改多重采样覆盖率，对植被和其他经过alpha测试的着色器非常有用。");
             ShaderReferenceUtil.DrawOneContent("Blend factors", "混合因子" +
                 "\nOne：源或目标的完整值" +
                 "\nZero：0" +
@@ -142,6 +142,10 @@ namespace taecg.tools.shaderReference
                 "\nLogicalAndInverted" +
                 "\nLogicalOrReverse" +
                 "\nLogicalOrInverted");
+
+            ShaderReferenceUtil.DrawTitle("其他");
+            ShaderReferenceUtil.DrawOneContent("AlphaToMask On | Off", "是否启用GPU上的alpha-to-coverage模式(当开启MSAA时,减少AlphaTest产生的过度锯齿感).");
+            ShaderReferenceUtil.DrawOneContent("Conservative True | False", "是否启用保守光栅化(指GPU对被三角形部分覆盖的像素进行光栅化,无论覆盖范围如何,这会导致更多片元着色器的调用).");
             EditorGUILayout.EndScrollView();
         }
     }
