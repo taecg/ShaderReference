@@ -1,5 +1,8 @@
 ## 更新日志
 
+### v1.0.5
+* 新增程序化的蜂窝格算法
+
 ### v1.0.4
 * 新增#pragma editor_sync_compilation
 * 新增#include

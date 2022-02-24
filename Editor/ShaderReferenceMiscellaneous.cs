@@ -2,7 +2,7 @@
  * @file         ShaderReferenceMath.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2018-12-05
- * @updated      2022-02-07
+ * @updated      2022-02-24
  *
  * @brief        杂项，一些算法技巧
  */
@@ -66,6 +66,14 @@ namespace taecg.tools.shaderReference
                 "uv = floor(uv) * 0.5;\n" +
                 "float c = frac(uv.x + uv.y) * 2;\n" +
                 "return c;");
+            ShaderReferenceUtil.DrawOneContent("蜂窝格", "float2 uv = i.uv * 格子密度;\n" +
+                "uv.y += floor(uv.x) * 0.5;\n" +
+                "uv = fmod(uv,1);\n" +
+                "uv = uv*2-1;\n" +
+                "uv = abs(uv);\n" +
+                "float d = max((uv.x*0.9+uv.y*0.5),uv.y);\n" +
+                "d = step(d,_Size);\n" +
+                "return d;");
             ShaderReferenceUtil.DrawOneContent("极坐标", "float2 centerUV = (i.uv * 2 - 1);\n" +
                 "float atan2UV = 1 - abs(atan2(centerUV.g, centerUV.r) / 3.14);\n" +
                 "利用UV来实现极坐标.");
