@@ -104,6 +104,12 @@ namespace taecg.tools.shaderReference
                 "方法4: float3 center = float3(unity_ObjectToWorld._m03, unity_ObjectToWorld._m13, unity_ObjectToWorld._m23);\n" +
                 "方法5: float3 center = unity_ObjectToWorld._14_24_34;\n" +
                 "在Shader中获取当前模型中心点在世界空间下的坐标位置.");
+            ShaderReferenceUtil.DrawOneContent("获取模型的旋转角度(Y轴)", "float cosA = unity_ObjectToWorld._11;\n" +
+                "float sinA = unity_ObjectToWorld._13;\n" +
+                "float angle = atan2(sinA, cosA);\n" +
+                "angle *= 180 / 3.1415926;\n" +
+                "if (angle < 0) angle += 360;");
+
             ShaderReferenceUtil.DrawOneContent("BillBoard", "在Properties中添加:\n\n" +
             "[Enum(BillBoard,1,VerticalBillboard,0)]BillBoardType(\"BillBoard Type\",float) = 1\n\n" +
             "在顶点着色器中添加:\n\n" +
