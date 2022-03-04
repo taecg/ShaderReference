@@ -2,7 +2,7 @@
  * @file         ShaderReferenceMath.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2018-12-05
- * @updated      2022-02-24
+ * @updated      2022-03-04
  *
  * @brief        杂项，一些算法技巧
  */
@@ -85,18 +85,22 @@ namespace taecg.tools.shaderReference
                 "\nfloat2 splitUV = uv * (1/_Sequence.xy) + float2(0,_Sequence.y - 1/_Sequence.y);" +
                 "\nfloat time = _Time.y * _Sequence.z;" +
                 "\nuv = splitUV + float2(floor(time *_Sequence.x)/_Sequence.x,1-floor(time)/_Sequence.y);");
-            ShaderReferenceUtil.DrawOneContent("HSV2RGB方法01", "half3 hsv2rgb (half3 c)\n" +
+            ShaderReferenceUtil.DrawOneContent("RGB2HSV方法", "half3 RGB2HSV(half3 c)\n" +
                 "{\n" +
-                "\tfloat2 rot= cos(t)*i.uv+sin(t)*float2(i.uv.y,-i.uv.x);\n" +
-                "\tfloat3 k = fmod (float3 (5, 3, 1) + c.x * 6, 6);\n" +
-                "\treturn c.z - c.z * c.y * max (min (min (k, 4 - k), 1), 0);\n" +
+                "\thalf4 K = half4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);\n" +
+                "\thalf4 p = lerp(half4(c.bg, K.wz), half4(c.gb, K.xy), step(c.b, c.g));\n" +
+                "\thalf4 q = lerp(half4(p.xyw, c.r), half4(c.r, p.yzx), step(p.x, c.r));\n" +
+                "\thalf d = q.x - min(q.w, q.y);\n" +
+                "\thalf e = 1.0e-10;\n" +
+                "\treturn half3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);\n" +
                 "}");
-            ShaderReferenceUtil.DrawOneContent("HSV2RGB方法02(更优化)", "half3 hsv2rgb (half3 c)\n" +
+            ShaderReferenceUtil.DrawOneContent("HSV2RGB方法", "half3 HSV2RGB (half3 c)\n" +
                 "{\n" +
                 "\tfloat4 K = float4 (1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);\n" +
                 "\tfloat3 p = abs (frac (c.xxx + K.xyz) * 6.0 - K.www);\n" +
                 "\treturn c.z * lerp (K.xxx, saturate (p - K.xxx), c.y);\n" +
                 "}");
+            ShaderReferenceUtil.DrawOneContent("利用HSV对颜色进行调整", "half3 hsv = RGB2HSV(baseMap.rgb);\nbaseMap.rgb = HSV2RGB(float3((hsv.x + _HSVValue.x), (hsv.y * _HSVValue.y), (hsv.z * _HSVValue.z)));");
             ShaderReferenceUtil.DrawTitle("顶点");
             ShaderReferenceUtil.DrawOneContent("模型中心点坐标", "方法1: float3 objCenterPos = mul( unity_ObjectToWorld, float4( 0, 0, 0, 1 ) ).xyz;\n" +
                 "方法2: float3 objCenterPos = float3(UNITY_MATRIX_M[0][3], UNITY_MATRIX_M[1][3], UNITY_MATRIX_M[2][3]);\n" +
