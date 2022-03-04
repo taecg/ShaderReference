@@ -85,22 +85,6 @@ namespace taecg.tools.shaderReference
                 "\nfloat2 splitUV = uv * (1/_Sequence.xy) + float2(0,_Sequence.y - 1/_Sequence.y);" +
                 "\nfloat time = _Time.y * _Sequence.z;" +
                 "\nuv = splitUV + float2(floor(time *_Sequence.x)/_Sequence.x,1-floor(time)/_Sequence.y);");
-            ShaderReferenceUtil.DrawOneContent("RGB2HSV方法", "half3 RGB2HSV(half3 c)\n" +
-                "{\n" +
-                "\thalf4 K = half4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);\n" +
-                "\thalf4 p = lerp(half4(c.bg, K.wz), half4(c.gb, K.xy), step(c.b, c.g));\n" +
-                "\thalf4 q = lerp(half4(p.xyw, c.r), half4(c.r, p.yzx), step(p.x, c.r));\n" +
-                "\thalf d = q.x - min(q.w, q.y);\n" +
-                "\thalf e = 1.0e-10;\n" +
-                "\treturn half3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);\n" +
-                "}");
-            ShaderReferenceUtil.DrawOneContent("HSV2RGB方法", "half3 HSV2RGB (half3 c)\n" +
-                "{\n" +
-                "\tfloat4 K = float4 (1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);\n" +
-                "\tfloat3 p = abs (frac (c.xxx + K.xyz) * 6.0 - K.www);\n" +
-                "\treturn c.z * lerp (K.xxx, saturate (p - K.xxx), c.y);\n" +
-                "}");
-            ShaderReferenceUtil.DrawOneContent("利用HSV对颜色进行调整", "half3 hsv = RGB2HSV(baseMap.rgb);\nbaseMap.rgb = HSV2RGB(float3((hsv.x + _HSVValue.x), (hsv.y * _HSVValue.y), (hsv.z * _HSVValue.z)));");
             ShaderReferenceUtil.DrawTitle("顶点");
             ShaderReferenceUtil.DrawOneContent("模型中心点坐标", "方法1: float3 objCenterPos = mul( unity_ObjectToWorld, float4( 0, 0, 0, 1 ) ).xyz;\n" +
                 "方法2: float3 objCenterPos = float3(UNITY_MATRIX_M[0][3], UNITY_MATRIX_M[1][3], UNITY_MATRIX_M[2][3]);\n" +
@@ -142,6 +126,22 @@ namespace taecg.tools.shaderReference
             "方法2：dot(rgb,fixed3(0.22,0.707,0.071))\n" +
             "方法3：dot(rgb,half3(0.299,0.587,0.114))\n" +
             "方法4：(r+g+b)/3");
+            ShaderReferenceUtil.DrawOneContent("RGB2HSV方法", "half3 RGB2HSV(half3 c)\n" +
+                "{\n" +
+                "\thalf4 K = half4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);\n" +
+                "\thalf4 p = lerp(half4(c.bg, K.wz), half4(c.gb, K.xy), step(c.b, c.g));\n" +
+                "\thalf4 q = lerp(half4(p.xyw, c.r), half4(c.r, p.yzx), step(p.x, c.r));\n" +
+                "\thalf d = q.x - min(q.w, q.y);\n" +
+                "\thalf e = 1.0e-10;\n" +
+                "\treturn half3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);\n" +
+                "}");
+            ShaderReferenceUtil.DrawOneContent("HSV2RGB方法", "half3 HSV2RGB (half3 c)\n" +
+                "{\n" +
+                "\tfloat4 K = float4 (1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);\n" +
+                "\tfloat3 p = abs (frac (c.xxx + K.xyz) * 6.0 - K.www);\n" +
+                "\treturn c.z * lerp (K.xxx, saturate (p - K.xxx), c.y);\n" +
+                "}");
+            ShaderReferenceUtil.DrawOneContent("利用HSV对颜色进行调整", "half3 hsv = RGB2HSV(baseMap.rgb);\nbaseMap.rgb = HSV2RGB(float3((hsv.x + _HSVValue.x), (hsv.y * _HSVValue.y), (hsv.z * _HSVValue.z)));");
 
             ShaderReferenceUtil.DrawTitle("光照");
             ShaderReferenceUtil.DrawOneContent("Matcap ", "o.normalWS = TransformObjectToWorldNormal(v.normalOS);\n" +
