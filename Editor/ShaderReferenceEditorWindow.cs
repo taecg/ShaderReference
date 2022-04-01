@@ -29,8 +29,7 @@ namespace taecg.tools.shaderReference
         public static string SEARCH_TEXT;
 
         public static Pipline mPipline = Pipline.BuildIn;
-        public static int FONTSIZE = 18;
-        private string[] tabNames = new string[] { "Pipline", "Properties", "Semantics", "Tags", "Render State", "Compile Directives", "Transformations", "Other", "BuildIn Variables", "Predefined Macros", "Platform Differences", "Math", "Lighting", "Miscellaneous", "Error Debug", "GLSL", "Setup", "About" };
+        private string[] tabNames = new string[] { "Pipline", "Properties", "Semantics", "Tags", "Render State", "Compile Directives", "Transformations", "Other", "BuildIn Variables", "Predefined Macros", "Platform Differences", "Math", "Lighting", "Miscellaneous", "Error Debug", "GLSL", "About" };
         private int selectedTabID;
         private ShaderReferencePipline pipline;
         private ShaderReferenceProperties properties;
@@ -48,7 +47,6 @@ namespace taecg.tools.shaderReference
         private ShaderReferenceMiscellaneous miscellaneous;
         private ShaderReferenceErrorDebug errorDebug;
         private ShaderReferenceGLSL glsl;
-        private ShaderReferenceSetup setup;
         private ShaderReferenceAbout about;
         private ShaderReferenceSearch search;
         #endregion
@@ -71,7 +69,6 @@ namespace taecg.tools.shaderReference
         {
             mPipline = (Pipline)(EditorPrefs.HasKey("taecg_ShaderReferencemPipline") ? EditorPrefs.GetInt("taecg_ShaderReferencemPipline") : 0);
             selectedTabID = EditorPrefs.HasKey("taecg_ShaderReferenceSelectedTabID") ? EditorPrefs.GetInt("taecg_ShaderReferenceSelectedTabID") : 0;
-            FONTSIZE = EditorPrefs.HasKey("taecg_ShaderReferenceFontSize") ? EditorPrefs.GetInt("taecg_ShaderReferenceFontSize") : 18;
 
             pipline = ScriptableObject.CreateInstance<ShaderReferencePipline>();
             properties = ScriptableObject.CreateInstance<ShaderReferenceProperties>();
@@ -89,7 +86,6 @@ namespace taecg.tools.shaderReference
             miscellaneous = ScriptableObject.CreateInstance<ShaderReferenceMiscellaneous>();
             errorDebug = ScriptableObject.CreateInstance<ShaderReferenceErrorDebug>();
             glsl = ScriptableObject.CreateInstance<ShaderReferenceGLSL>();
-            setup = ScriptableObject.CreateInstance<ShaderReferenceSetup>();
             about = ScriptableObject.CreateInstance<ShaderReferenceAbout>();
             search = ScriptableObject.CreateInstance<ShaderReferenceSearch>();
 
@@ -99,7 +95,6 @@ namespace taecg.tools.shaderReference
         {
             EditorPrefs.SetInt("taecg_ShaderReferencemPipline", (int)mPipline);
             EditorPrefs.SetInt("taecg_ShaderReferenceSelectedTabID", selectedTabID);
-            EditorPrefs.SetInt("taecg_ShaderReferenceFontSize", FONTSIZE);
         }
         #endregion
 
@@ -121,9 +116,6 @@ namespace taecg.tools.shaderReference
 
                 //功能选择
                 selectedTabID = GUILayout.SelectionGrid(selectedTabID, tabNames, 1);
-
-                //字体大小设置
-                // FONTSIZE = EditorGUILayout.IntSlider ("Font Size", FONTSIZE, 16, 50);
 
                 EditorGUILayout.EndVertical();
                 #endregion
@@ -227,9 +219,6 @@ namespace taecg.tools.shaderReference
                     glsl.DrawMainGUI();
                     break;
                 case 16:
-                    setup.DrawMainGUI();
-                    break;
-                case 17:
                     about.DrawMainGUI();
                     break;
             }

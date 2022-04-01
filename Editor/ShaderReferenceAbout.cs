@@ -45,7 +45,7 @@ namespace taecg.tools.shaderReference
             labelStyle.fontStyle = FontStyle.Italic;
             labelStyle.alignment = TextAnchor.MiddleCenter;
             EditorGUILayout.TextArea("Git更新地址<https://github.com/taecg/ShaderReference.git>", labelStyle);
-            EditorGUILayout.LabelField("by taecg@qq.com  updated 2022/03/04", labelStyle);
+            EditorGUILayout.LabelField("by taecg@qq.com  updated 2022/04/01", labelStyle);
 
             GUIStyle style = new GUIStyle();
             style.alignment = TextAnchor.MiddleCenter;

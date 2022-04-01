@@ -28,7 +28,7 @@ namespace taecg.tools.shaderReference
                     style01.alignment = TextAnchor.MiddleLeft;
                     style01.wordWrap = false;
                     style01.fontStyle = FontStyle.Bold;
-                    style01.fontSize = ShaderReferenceEditorWindow.FONTSIZE;
+                    style01.fontSize = 18;
                 }
                 return style01;
             }
@@ -45,7 +45,7 @@ namespace taecg.tools.shaderReference
                     style02 = new GUIStyle("label");
                     style02.wordWrap = true;
                     style02.richText = true;
-                    style02.fontSize = ShaderReferenceEditorWindow.FONTSIZE - 4;
+                    style02.fontSize = 16;
                 }
                 return style02;
             }

@@ -2,7 +2,7 @@
  * @file         ShaderReferenceMath.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2018-11-16
- * @updated      2021-09-27
+ * @updated      2022-04-01
  *
  * @brief        数学运算相关
  */
@@ -197,6 +197,11 @@ namespace taecg.tools.shaderReference
                     "textureName:Properties中声明的CUBE纹理名称\n" +
                     "samplerName:此纹理所使用的采样器设置\n" +
                     "coord:采样用的UV");
+                    ShaderReferenceUtil.DrawOneContent("SAMPLE_TEXTURECUBE_LOD(textureName, samplerName, coord,lod);", "进行立方体纹理采样操作\n" +
+                    "textureName:Properties中声明的CUBE纹理名称\n" +
+                    "samplerName:此纹理所使用的采样器设置\n" +
+                    "coord:采样用的UV\n" +
+                    "lod:mipmap级别");
                     break;
             }
 
