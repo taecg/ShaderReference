@@ -134,13 +134,17 @@ namespace taecg.tools.shaderReference
             ShaderReferenceUtil.DrawOneContent("实现步骤", "用于对多个对象(网格一样，材质一样，但是材质属性不一样)合批,单个合批最大上限为511个对象.\n" +
                 "1.#pragma multi_compile_instancing 添加此指令后会使材质面板上曝露Instaning开关,同时会生成相应的Instancing变体(INSTANCING_ON).\n" +
                 "2.UNITY_VERTEX_INPUT_INSTANCE_ID 在顶点着色器的输入(appdata)和输出(v2f可选)中添加(uint instanceID : SV_InstanceID).\n" +
-                "3.UNITY_INSTANCING_BUFFER_START(arrayName) / UNITY_INSTANCING_BUFFER_END(arrayName) 将每个你需要实例化的属性都封装在这个常量寄存器中\n" +
-                "4.UNITY_DEFINE_INSTANCED_PROP(type, name) 在上面的START和END间把需要的每条属性加进来\n" +
-                "5.UNITY_SETUP_INSTANCE_ID(v); 放在顶点着色器/片断着色器(可选)中最开始的地方,这样才能访问到全局变量unity_InstanceID.\n" +
-                "6.UNITY_TRANSFER_INSTANCE_ID(v, o); 当需要将实例化ID传到片断着色器时,在顶点着色器中添加.\n" +
-                "7.UNITY_ACCESS_INSTANCED_PROP(arrayName, propName) 在片断着色器中访问具体的实例化变量.\n");
+                "3.构建需要实例化的额外数据:\n" +
+                "\t#ifdef UNITY_INSTANCING_ENABLED\n" +
+                "\tUNITY_INSTANCING_BUFFER_START(prop自定义名字)\n" +
+                "\tUNITY_DEFINE_INSTANCED_PROP(vector, _BaseColor)\n" +
+                "\tUNITY_INSTANCING_BUFFER_END(prop自定义名字)\n" +
+                "\t#endif\n" +
+                "4.UNITY_SETUP_INSTANCE_ID(v); 放在顶点着色器/片断着色器(可选)中最开始的地方,这样才能访问到全局变量unity_InstanceID.\n" +
+                "5.UNITY_TRANSFER_INSTANCE_ID(v, o); 当需要将实例化ID传到片断着色器时,在顶点着色器中添加.\n" +
+                "6.UNITY_ACCESS_INSTANCED_PROP(arrayName, propName) 在片断着色器中访问具体的实例化变量.\n");
             ShaderReferenceUtil.DrawOneContent("Instancing选项", "对GPU Instancing进行一些设置.\n" +
-                "• #pragma instancing_options forcemaxcount:batchSize 强制设置单个批次内Instancing的最大数量,最大值和默认值是500.\n" +
+                "• #pragma instancing_options forcemaxcount:batchSize 强制设置单个批次内Instancing的最大数量,最大值和默认值是511.\n" +
                 "• #pragma instancing_options maxcount:batchSize 设置单个批次内Instancing的最大数量,仅Vulkan, Xbox One和Switch有效.");
 
             EditorGUILayout.EndScrollView();

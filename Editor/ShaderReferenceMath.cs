@@ -165,6 +165,7 @@ namespace taecg.tools.shaderReference
                     ShaderReferenceUtil.DrawOneContent("tex2Dlod(samper2D tex,float4 s)", "二维纹理采样,s.w表示采样的是mipmap的几级,仅在ES3.0以上支持.");
                     ShaderReferenceUtil.DrawOneContent("tex2DProj(samper2D tex,float4 s)", "二维投影纹理采样,uv使用s.xy/s.w");
                     ShaderReferenceUtil.DrawOneContent("texCUBE(samperCUBE tex,float3 s)", "立方体纹理采样");
+                    ShaderReferenceUtil.DrawOneContent("tex3D(samper3D tex,float3 s)", "3D纹理采样,uv使用xyz");
                     break;
                 case ShaderReferenceEditorWindow.Pipline.URP:
                     ShaderReferenceUtil.DrawOneContent("TEXTURE2D (textureName);", "二维纹理的定义(纹理与采样器分离定义),此功能在OpenGL ES2.0上不支持，会使用原来sampler2D的形式.\n" +
@@ -202,6 +203,10 @@ namespace taecg.tools.shaderReference
                     "samplerName:此纹理所使用的采样器设置\n" +
                     "coord:采样用的UV\n" +
                     "lod:mipmap级别");
+                    ShaderReferenceUtil.DrawOneContent("SAMPLE_TEXTURE3D(textureName, samplerName, coord);", "进行3D纹理采样操作\n" +
+                    "textureName:Properties中声明的3D纹理名称\n" +
+                    "samplerName:此纹理所使用的采样器设置\n" +
+                    "coord:采样用的三给UV");
                     break;
             }
 

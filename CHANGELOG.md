@@ -1,5 +1,9 @@
 ## 更新日志
 
+### v1.0.9
+* URP GPUInstancing
+* 新增SAMPLE_TEXTURE3D
+
 ### v1.0.8
 * 移除设置选项
 * 新增SAMPLE_TEXTURECUBE_LOD()
