@@ -55,12 +55,19 @@ namespace taecg.tools.shaderReference
         [MenuItem("Window/Shader参考大全... #R", false, -11)]
         public static void Open()
         {
-            ShaderReferenceEditorWindow window = GetWindow<ShaderReferenceEditorWindow>();
-            // GUIContent content = EditorGUIUtility.IconContent("d_Shader Icon");
-            GUIContent content = new GUIContent();
-            content.text = "Shader参考大全";
-            window.titleContent = content;
-            window.Show();
+            if (HasOpenInstances<ShaderReferenceEditorWindow>())
+            {
+                GetWindow<ShaderReferenceEditorWindow>().Close();
+            }
+            else
+            {
+                ShaderReferenceEditorWindow window = GetWindow<ShaderReferenceEditorWindow>();
+                // GUIContent content = EditorGUIUtility.IconContent("d_Shader Icon");
+                GUIContent content = new GUIContent();
+                content.text = "Shader参考大全";
+                window.titleContent = content;
+                window.Show();
+            }
         }
         #endregion
 
