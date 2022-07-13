@@ -2,7 +2,7 @@
  * @file         ShaderReferenceProperties.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2018-11-10
- * @updated      2021-12-22
+ * @updated      2022-07-13
  *
  * @brief        Properties（属性相关）
  */
@@ -53,7 +53,7 @@ namespace taecg.tools.shaderReference
                     break;
                 case ShaderReferenceEditorWindow.Pipline.URP:
                     ShaderReferenceUtil.DrawOneContent("_MainTexArray (\"TextureArray\", 2DArray) = \"white\" {}", "类型:2D纹理数组\n" +
-                    "TEXTURE2D_ARRAY(_MainTexArry);  SAMPLER(sampler_MainTexArry);\n" +
+                    "TEXTURE2D_ARRAY(_MainTexArray);  SAMPLER(sampler_MainTexArray);\n" +
                     "SAMPLE_TEXTURE2D_ARRAY(_MainTexArry, sampler_MainTexArry, i.uv,_Index);\n" +
                     "默认值有white、black、gray、bump以及空，空就是white\n" +
                     "仅支持DX10、OpenGL3.0、Metal及以上版本");
