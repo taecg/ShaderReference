@@ -16,7 +16,7 @@ namespace taecg.tools.shaderReference
 {
     public class ShaderReferenceAbout : EditorWindow
     {
-        #region 数据成员
+#region 数据成员
         private Vector2 scrollPos;
         private Texture talogo
         {
@@ -33,7 +33,7 @@ namespace taecg.tools.shaderReference
                 return AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath("08a00299070e2c345b3a1656b1965dfe"), typeof(Texture)) as Texture;
             }
         }
-        #endregion
+#endregion
 
         public void DrawMainGUI()
         {
@@ -45,7 +45,7 @@ namespace taecg.tools.shaderReference
             labelStyle.fontStyle = FontStyle.Italic;
             labelStyle.alignment = TextAnchor.MiddleCenter;
             EditorGUILayout.TextArea("Git更新地址<https://github.com/taecg/ShaderReference.git>", labelStyle);
-            EditorGUILayout.LabelField("by taecg@qq.com  updated 2022/04/11", labelStyle);
+            EditorGUILayout.LabelField("by taecg@qq.com  updated 2022/07/19", labelStyle);
 
             GUIStyle style = new GUIStyle();
             style.alignment = TextAnchor.MiddleCenter;

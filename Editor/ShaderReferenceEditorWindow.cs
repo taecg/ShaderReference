@@ -29,7 +29,7 @@ namespace taecg.tools.shaderReference
         public static string SEARCH_TEXT;
 
         public static Pipline mPipline = Pipline.BuildIn;
-        private string[] tabNames = new string[] { "Pipline", "Properties", "Semantics", "Tags", "Render State", "Compile Directives", "Transformations", "Other", "BuildIn Variables", "Predefined Macros", "Platform Differences", "Math", "Lighting", "Miscellaneous", "Error Debug", "GLSL", "About" };
+        private string[] tabNames = new string[] { "Pipline", "Properties", "Semantics", "Tags", "Render State", "Compile Directives", "Transformations", "Other", "BuildIn Variables", "Predefined Macros", "Platform Differences", "Math", "Lighting", "Miscellaneous", "Error Debug", "GLSL", "SubstancePainter", "About" };
         private int selectedTabID;
         private ShaderReferencePipline pipline;
         private ShaderReferenceProperties properties;
@@ -47,6 +47,7 @@ namespace taecg.tools.shaderReference
         private ShaderReferenceMiscellaneous miscellaneous;
         private ShaderReferenceErrorDebug errorDebug;
         private ShaderReferenceGLSL glsl;
+        private ShaderReferenceSubstancePainter substancePainter;
         private ShaderReferenceAbout about;
         private ShaderReferenceSearch search;
         #endregion
@@ -93,6 +94,7 @@ namespace taecg.tools.shaderReference
             miscellaneous = ScriptableObject.CreateInstance<ShaderReferenceMiscellaneous>();
             errorDebug = ScriptableObject.CreateInstance<ShaderReferenceErrorDebug>();
             glsl = ScriptableObject.CreateInstance<ShaderReferenceGLSL>();
+            substancePainter = ScriptableObject.CreateInstance<ShaderReferenceSubstancePainter>();
             about = ScriptableObject.CreateInstance<ShaderReferenceAbout>();
             search = ScriptableObject.CreateInstance<ShaderReferenceSearch>();
 
@@ -226,6 +228,9 @@ namespace taecg.tools.shaderReference
                     glsl.DrawMainGUI();
                     break;
                 case 16:
+                    substancePainter.DrawMainGUI();
+                    break;
+                case 17:
                     about.DrawMainGUI();
                     break;
             }
@@ -250,6 +255,7 @@ namespace taecg.tools.shaderReference
             miscellaneous.DrawMainGUI();
             errorDebug.DrawMainGUI();
             glsl.DrawMainGUI();
+            substancePainter.DrawMainGUI();
             about.DrawMainGUI();
         }
         #endregion

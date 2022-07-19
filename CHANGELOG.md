@@ -1,5 +1,8 @@
 ## 更新日志
 
+### v1.0.10
+* 新增SubstancePainter的Shader语法
+
 ### v1.0.9
 * URP GPUInstancing
 * 新增SAMPLE_TEXTURE3D
