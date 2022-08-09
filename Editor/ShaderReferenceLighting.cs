@@ -2,7 +2,7 @@
  * @file         ShaderReferenceLighting.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2019-10-21
- * @updated      2021-12-24
+ * @updated      2022-08-03
  *
  * @brief        Shader中的光照相关
  */
@@ -47,17 +47,17 @@ namespace taecg.tools.shaderReference
                 "N:\t顶点的单位法线向量.\n" +
                 "H:\t入射光线L与视线V的中间向量，也称为半角向量H = normalize(L+V).\n" +
                 "Shininess:\t乘方运算来模拟高光的变化.");
-            ShaderReferenceUtil.DrawOneContent("Disney Principled BRDF", "f(l,v) = diffuse + D(h)F(v,h)G(l,v,h)/4cos(n·l)cos(n·v)\n" +
-                "f(l,v):\t双向反射分布函数的最终值,l表示光的方向,v表示视线的方向.\n" +
-                "diffuse:\t漫反射.\n" +
-                "D(h):\t法线分布函数(Normal Distribution Function),描述微面元法线分布的概率,即朝向正确的法线浓度.h为半角向量,表示光的方向与反射方向的半角向量,只有物体的微表面法向m = h时,才会反射到视线中.\nD(h) = roughness^2 / π((n·h)^2(roughness^2-1)+1)^2\n" +
-                "F(v,h):\t菲涅尔方程(Fresnel Equation),描述不同的表面角下表面所反射的光线所占的比率.\nF(v,h) = F0 + (1-F0)(1-(v·h))^5(F0是0度入射角的菲涅尔反射值)\n" +
-                "G(l,v,h):\t几何函数(Geometry Function),描述微平面自成阴影的属性,即微表面法向m = h的并未被遮蔽的表面点的百分比.\n" +
-                "4cos(n·l)cos(n·v):\t校正因子(correctionfactor)作为微观几何的局部空间和整个宏观表面的局部空间之间变换的微平面量的校正.");
 
             switch (ShaderReferenceEditorWindow.mPipline)
             {
                 case ShaderReferenceEditorWindow.Pipline.BuildIn:
+                    ShaderReferenceUtil.DrawOneContent("Disney Principled BRDF", "f(l,v) = diffuse + D(h)F(v,h)G(l,v,h)/4cos(n·l)cos(n·v)\n" +
+                    "f(l,v):\t双向反射分布函数的最终值,l表示光的方向,v表示视线的方向.\n" +
+                    "diffuse:\t漫反射.\n" +
+                    "D(h):\t法线分布函数(Normal Distribution Function),描述微面元法线分布的概率,即朝向正确的法线浓度.h为半角向量,表示光的方向与反射方向的半角向量,只有物体的微表面法向m = h时,才会反射到视线中.\nD(h) = roughness^2 / π((n·h)^2(roughness^2-1)+1)^2\n" +
+                    "F(v,h):\t菲涅尔方程(Fresnel Equation),描述不同的表面角下表面所反射的光线所占的比率.\nF(v,h) = F0 + (1-F0)(1-(v·h))^5(F0是0度入射角的菲涅尔反射值)\n" +
+                    "G(l,v,h):\t几何函数(Geometry Function),描述微平面自成阴影的属性,即微表面法向m = h的并未被遮蔽的表面点的百分比.\n" +
+                    "4cos(n·l)cos(n·v):\t校正因子(correctionfactor)作为微观几何的局部空间和整个宏观表面的局部空间之间变换的微平面量的校正.");
                     ShaderReferenceUtil.DrawTitle("法线 NormalMap");
                     ShaderReferenceUtil.DrawOneContent("使用切线空间下的法线",
                         "1.appdata中定义NORMAL与TANGENT语义.\n" +
@@ -117,6 +117,13 @@ namespace taecg.tools.shaderReference
                         "4.UNITY_APPLY_FOG(_unity_fogCoord, c): 在片断着色器中进行雾效颜色混合.");
                     break;
                 case ShaderReferenceEditorWindow.Pipline.URP:
+                    ShaderReferenceUtil.DrawOneContent("BRDF", "f(l,v) = diffuse + D(h)F(v,h)G(l,v,h)/4cos(n·l)cos(n·v)\n" +
+                    "f(l,v):\t双向反射分布函数的最终值,l表示光的方向,v表示视线的方向.\n" +
+                    "diffuse:\t漫反射.\n" +
+                    "D(h):\t法线分布函数(Normal Distribution Function),描述微面元法线分布的概率,即朝向正确的法线浓度.h为半角向量,表示光的方向与反射方向的半角向量,只有物体的微表面法向m = h时,才会反射到视线中.\nD(h) = roughness^2 / π((n·h)^2(roughness^2-1)+1)^2\n" +
+                    "F(v,h):\t菲涅尔方程(Fresnel Equation),描述不同的表面角下表面所反射的光线所占的比率.\nF(v,h) = F0 + (1-F0)(1-(v·h))^5(F0是0度入射角的菲涅尔反射值)\n" +
+                    "G(l,v,h):\t几何函数(Geometry Function),描述微平面自成阴影的属性,即微表面法向m = h的并未被遮蔽的表面点的百分比.\n" +
+                    "4cos(n·l)cos(n·v):\t校正因子(correctionfactor)作为微观几何的局部空间和整个宏观表面的局部空间之间变换的微平面量的校正.");
                     ShaderReferenceUtil.DrawTitle("法线 NormalMap");
                     ShaderReferenceUtil.DrawOneContent("使用切线空间下的法线",
                         "1.Attributes中定义NORMAL与TANGENT语义.\n" +

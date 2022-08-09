@@ -1,5 +1,10 @@
 ## 更新日志
 
+### v1.0.11
+* 新增ComputerShader的语法
+* 移除ErrorDebug(不太实用)
+* Shift+R变成一个开关(在打开的时候可以执行关闭)
+
 ### v1.0.10
 * 新增SubstancePainter的Shader语法
 

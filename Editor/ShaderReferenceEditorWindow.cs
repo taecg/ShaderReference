@@ -2,7 +2,7 @@
  * @file         ShaderReferenceEditorWindow.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2018-11-10
- * @updated      2021-06-25
+ * @updated      2022-07-28
  *
  * @brief        着色器语法参考工具
  */
@@ -29,7 +29,7 @@ namespace taecg.tools.shaderReference
         public static string SEARCH_TEXT;
 
         public static Pipline mPipline = Pipline.BuildIn;
-        private string[] tabNames = new string[] { "Pipline", "Properties", "Semantics", "Tags", "Render State", "Compile Directives", "Transformations", "Other", "BuildIn Variables", "Predefined Macros", "Platform Differences", "Math", "Lighting", "Miscellaneous", "Error Debug", "GLSL", "SubstancePainter", "About" };
+        private string[] tabNames = new string[] { "Pipline", "Properties", "Semantics", "Tags", "Render State", "Compile Directives", "Transformations", "Other", "BuildIn Variables", "Predefined Macros", "Platform Differences", "Math", "Lighting", "Miscellaneous", "GLSL", "ComputerShader", "SubstancePainter", "About" };
         private int selectedTabID;
         private ShaderReferencePipline pipline;
         private ShaderReferenceProperties properties;
@@ -45,8 +45,8 @@ namespace taecg.tools.shaderReference
         private ShaderReferenceLighting lighting;
         private ShaderReferenceMath math;
         private ShaderReferenceMiscellaneous miscellaneous;
-        private ShaderReferenceErrorDebug errorDebug;
         private ShaderReferenceGLSL glsl;
+        private ShaderReferenceComputerShader computerShader;
         private ShaderReferenceSubstancePainter substancePainter;
         private ShaderReferenceAbout about;
         private ShaderReferenceSearch search;
@@ -92,8 +92,8 @@ namespace taecg.tools.shaderReference
             lighting = ScriptableObject.CreateInstance<ShaderReferenceLighting>();
             math = ScriptableObject.CreateInstance<ShaderReferenceMath>();
             miscellaneous = ScriptableObject.CreateInstance<ShaderReferenceMiscellaneous>();
-            errorDebug = ScriptableObject.CreateInstance<ShaderReferenceErrorDebug>();
             glsl = ScriptableObject.CreateInstance<ShaderReferenceGLSL>();
+            computerShader = ScriptableObject.CreateInstance<ShaderReferenceComputerShader>();
             substancePainter = ScriptableObject.CreateInstance<ShaderReferenceSubstancePainter>();
             about = ScriptableObject.CreateInstance<ShaderReferenceAbout>();
             search = ScriptableObject.CreateInstance<ShaderReferenceSearch>();
@@ -222,10 +222,10 @@ namespace taecg.tools.shaderReference
                     miscellaneous.DrawMainGUI();
                     break;
                 case 14:
-                    errorDebug.DrawMainGUI();
+                    glsl.DrawMainGUI();
                     break;
                 case 15:
-                    glsl.DrawMainGUI();
+                    computerShader.DrawMainGUI();
                     break;
                 case 16:
                     substancePainter.DrawMainGUI();
@@ -253,8 +253,8 @@ namespace taecg.tools.shaderReference
             math.DrawMainGUI();
             lighting.DrawMainGUI();
             miscellaneous.DrawMainGUI();
-            errorDebug.DrawMainGUI();
             glsl.DrawMainGUI();
+            computerShader.DrawMainGUI();
             substancePainter.DrawMainGUI();
             about.DrawMainGUI();
         }

@@ -24,8 +24,9 @@ namespace taecg.tools.shaderReference
         public void DrawMainGUI()
         {
             scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
+            ShaderReferenceUtil.DrawTitle("参考网址");
+            ShaderReferenceUtil.DrawOneContent("URL", "https://substance3d.adobe.com/documentation/spdoc/shader-api-89686018.html");
             ShaderReferenceUtil.DrawTitle("材质参数");
-
             ShaderReferenceUtil.DrawOneContent("颜色(RGB)", "//: param custom {\"default\":[1,0.9568,0.8392],\"label\":\"灯光颜色(RGB)\",\"widget\":\"color\",\"group\":\"灯光\",\"description\":\"tooltip在这里\"}\n" +
             "uniform vec3 _LightColor;\n" +
             "uniform vec4 _BaseColor;(当为4维颜色时,alpha会变成滑条)");
@@ -49,7 +50,7 @@ namespace taecg.tools.shaderReference
             "//:     \"Value -1\": -1,\n" +
             "//:     \"Value 0\": 0,\n" +
             "//:     \"Value 10\": 10\n" +
-            "//:   },n" +
+            "//:   },\n" +
             "//:   \"group\":\"Enum\"\n" +
             "//: }\n" +
             "uniform int u_combobox;");
@@ -76,7 +77,8 @@ namespace taecg.tools.shaderReference
             "//: param auto channel_specular\n" +
             "//: param auto channel_specularlevel\n" +
             "//: param auto channel_transmissive\n" +
-            "uniform SamplerSparse channel_tex;");
+            "uniform SamplerSparse channel_tex;\n" +
+            "vec4 tex = textureSparse(channel_basecolor,i.sparse_coord);");
             ShaderReferenceUtil.DrawOneContent("用户自定义通道图", "//: param auto channel_user0\n" +
             "//: param auto channel_user1\n" +
             "//: param auto channel_user2\n" +
@@ -94,6 +96,13 @@ namespace taecg.tools.shaderReference
             "//: param auto texture_position (世界空间下的位置纹理)\n" +
             "//: param auto texture_thickness (厚度纹理)\n" +
             "uniform sampler2D u_meshTexture;");
+            ShaderReferenceUtil.DrawTitle("片断输出");
+            ShaderReferenceUtil.DrawOneContent("最终输出(emissiveColorOutput + albedoOutput * diffuseShadingOutput + specularShadingOutput)", "void alphaOutput(1);\n" +
+            "diffuseShadingOutput(vec3(0,0,0));\n" +
+            "specularShadingOutput(vec3(0,0,0));\n" +
+            "emissiveColorOutput(vec3(0,0,0));\n" +
+            "albedoOutput(vec3(1,1,1));\n" +
+            "sssCoefficientsOutput(vec4(0,0,0,0));");
             EditorGUILayout.EndScrollView();
         }
         #endregion
