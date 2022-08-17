@@ -1,8 +1,8 @@
 ﻿/**
- * @file         ShaderReferenceMath.cs
- * @author       Hongwei Li(taecg@qq.com)
+ * @file         ShaderReferenceSubstancePainter.cs
+ * @author       taecg
  * @created      2022-07-19
- * @updated      2022-07-19
+ * @updated      2022-08-17
  *
  * @brief        SubstancePainter中的shader语法
  */
@@ -56,7 +56,8 @@ namespace taecg.tools.shaderReference
             "uniform int u_combobox;");
             ShaderReferenceUtil.DrawOneContent("自定义纹理", "//: param custom { \"default\": \"\", \"default_color\": [1.0, 1.0, 1.0, 1.0], \"label\": \"Texture\",\"usage\": \"texture\",\"group\":\"Texture\" }\n" +
             "//: param custom { \"default\": \"\", \"label\": \"Texture\",\"usage\": \"environment\",\"group\":\"Texture\" }\n" +
-            "uniform sampler2D u_sampler1;");
+            "uniform sampler2D u_sampler1;\n" +
+            "vec4 tex = texture(u_sampler1, inputs.tex_coord);");
             ShaderReferenceUtil.DrawOneContent("内置通道图", "//: param auto channel_basecolor\n" +
             "//: param auto channel_ambientocclusion\n" +
             "//: param auto channel_anisotropyangle\n" +
