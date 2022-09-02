@@ -1,8 +1,8 @@
 ﻿/**
  * @file         ShaderReferenceMath.cs
- * @author       Hongwei Li(taecg@qq.com)
+ * @author       taecg
  * @created      2018-11-16
- * @updated      2022-04-01
+ * @updated      2022-09-02
  *
  * @brief        数学运算相关
  */
@@ -78,7 +78,9 @@ namespace taecg.tools.shaderReference
             "float degrees(float x)\n" +
             "{\n" +
             "    return 57.29577951 * x;\n" +
-            "}");
+            "}\n" +
+            "角度=180/π*弧度\n" +
+            "弧度=π/180*角度");
             ShaderReferenceUtil.DrawOneContent("determinant(M)", "返回方阵M的行列式,注意只有方阵才有行列式");
             ShaderReferenceUtil.DrawOneContent("dot(a,b)", "点乘，a和b可以为标量也可以为向量,其计算结果是两个向量夹角的余弦值，相当于|a|*|b|*cos(θ)或者a.x*b.x+a.y*b.y+a.z*b.z\na和b的位置无所谓前后，结果都是一样的");
             ShaderReferenceUtil.DrawOneContent("distance(a,b)", "返回a,b间的距离.\n" +
