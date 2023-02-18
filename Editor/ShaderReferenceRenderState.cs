@@ -98,7 +98,7 @@ namespace taecg.tools.shaderReference
                 "\n在混合时可以针对某个RT做混合，比如Blend 3 One One,就是对RenderTarget3做混合。" +
                 "\n可在Properties中添加这个实现下拉列表选择:[Enum(UnityEngine.Rendering.BlendMode)]");
             ShaderReferenceUtil.DrawOneContent("Blend SrcFactor DstFactor", "SrcFactor为源颜色因子，DstFactor为目标颜色因子，将两者按Op中指定的操作进行混合。");
-            ShaderReferenceUtil.DrawOneContent("Blend SrcFactor DstFactor, SrcFactorA DstFactorA", "对RGB和A通道分别做混合操作。");
+            ShaderReferenceUtil.DrawOneContent("Blend SrcFactor DstFactor, SrcFactorA DstFactorA", "对RGB和A通道分别做混合操作.\n对A的混合操作结果可以在FrameDebugger中的渲染目标RT中点选A通道来查看.");
             ShaderReferenceUtil.DrawOneContent("BlendOp Op", "混合时的操作运算符，默认值为Add（加法操作）。");
             ShaderReferenceUtil.DrawOneContent("BlendOp OpColor, OpAlpha", "对RGB和A通道分别指定混合运算符。");
             ShaderReferenceUtil.DrawOneContent("Blend factors", "混合因子" +
