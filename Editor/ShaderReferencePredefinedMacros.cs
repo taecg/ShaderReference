@@ -2,7 +2,7 @@
  * @file         ShaderReferencePredefinedMacros.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2019-04-19
- * @updated      2022-01-06
+ * @updated      2023-03-02
  *
  * @brief        Unity官方预定义的宏
  */
@@ -36,6 +36,7 @@ namespace taecg.tools.shaderReference
             ShaderReferenceUtil.DrawOneContent("SHADER_API_PS4", "PS4平台,SHADER_API_PSSL同时也会被定义");
             ShaderReferenceUtil.DrawOneContent("SHADER_API_XBOXONE", "Xbox One");
             ShaderReferenceUtil.DrawOneContent("SHADER_API_MOBILE", "所有移动平台(GLES/GLES3/METAL)");
+            ShaderReferenceUtil.DrawOneContent("SHADER_API_DESKTOP", "Window、Mac和Linux桌面平台");
             //ShaderReferenceUtil.DrawOneContent("SHADER_TARGET_GLSL", "");
 
             ShaderReferenceUtil.DrawTitle("流程控制");
