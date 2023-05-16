@@ -126,7 +126,7 @@ namespace taecg.tools.shaderReference
             "{\n" +
             "   exp(x * log(y));\n" +
             "}");
-            ShaderReferenceUtil.DrawOneContent("PositivePow(x,y)", "同pow()，但是避免了报错的警告信息.");
+            ShaderReferenceUtil.DrawOneContent("PositivePow(x,y)", "pow(abs(x),y)，避免了报错的警告信息.");
             ShaderReferenceUtil.DrawOneContent("rcp(x)", "返回x的倒数,相当于 1/x");
             ShaderReferenceUtil.DrawOneContent("reflect(I, N)", "根据入射光方向向量 I ，和顶点法向量 N ，计算反射光方向向量。其中 I 和 N 必须被归一化，需要非常注意的是，这个 I 是指向顶点的；函数只对三元向量有效。\n\n" +
             "float3 reflect( float3 i, float3 n )\n" +
