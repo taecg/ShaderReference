@@ -2,7 +2,7 @@
  * @file         ShaderReferenceMath.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2018-12-05
- * @updated      2022-03-04
+ * @updated      2022-06-13
  *
  * @brief        杂项，一些算法技巧
  */
@@ -142,6 +142,16 @@ namespace taecg.tools.shaderReference
                 "\treturn c.z * lerp (K.xxx, saturate (p - K.xxx), c.y);\n" +
                 "}");
             ShaderReferenceUtil.DrawOneContent("利用HSV对颜色进行调整", "half3 hsv = RGB2HSV(baseMap.rgb);\nbaseMap.rgb = HSV2RGB(float3((hsv.x + _HSVValue.x), (hsv.y * _HSVValue.y), (hsv.z * _HSVValue.z)));");
+
+            ShaderReferenceUtil.DrawTitle("深度");
+            ShaderReferenceUtil.DrawOneContent("从深度重建世界坐标 ", "float2 screenUV = i.positionCS/_ScreenParams.xy;\n" +
+            "half depthMap = SAMPLE_TEXTURE2D(_CameraDepthTexture, sampler_CameraDepthTexture, screenUV).r;\n" +
+            "#if UNITY_REVERSED_Z\n" +
+            "  real depth = depthMap;\n" +
+            "#else\n" +
+            "  real depth = lerp(UNITY_NEAR_CLIP_VALUE, 1, depthMap);\n" +
+            "#endif\n" +
+            "float3 positionWS = ComputeWorldSpacePosition(screenUV, depth, UNITY_MATRIX_I_VP);");
 
             ShaderReferenceUtil.DrawTitle("光照");
             ShaderReferenceUtil.DrawOneContent("Matcap ", "o.normalWS = TransformObjectToWorldNormal(v.normalOS);\n" +
