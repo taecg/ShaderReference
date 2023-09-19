@@ -2,7 +2,7 @@
  * @file         ShaderReferenceMath.cs
  * @author       taecg
  * @created      2018-11-16
- * @updated      2022-09-02
+ * @updated      2023-09-18
  *
  * @brief        数学运算相关
  */
@@ -225,7 +225,7 @@ namespace taecg.tools.shaderReference
                         "textureName:Properties中声明的2D纹理名称\n" +
                         "samplerName:此纹理所使用的采样器设置\n" +
                         "coord:采样用的UV\n" +
-                        "index:数组索引");
+                        "index:数组索引,必须用int,否则部分机型上会变粉.");
                     break;
             }
 
