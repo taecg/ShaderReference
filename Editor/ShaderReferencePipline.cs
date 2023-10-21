@@ -27,11 +27,11 @@ namespace taecg.tools.shaderReference
             ShaderReferenceUtil.DrawOneContent("0.Application Stage", "此阶段一般由CPU将需要在屏幕上绘制的几何体、摄像机位置、光照纹理等输出到管线的几何阶段.");
 
             ShaderReferenceUtil.DrawTitle("几何阶段（ Geometry Stage）");
-            ShaderReferenceUtil.DrawOneContent("1.模型和视图变换（Model and View Transform）", "模型和视图变换阶段分为模型变换和视图变换.\n模型变换的目的是将模型从本地空间变换到世界空间当中，而视图变换的目的是将摄像机放置于坐标原点（以使裁剪和投影操作更简单高效），将模型从世界空间变换到相机空间，以便后续步骤的操作。");
+            ShaderReferenceUtil.DrawOneContent("1.模型和视图变换（Model and View Transform）", "模型和视图变换阶段分为模型变换和视图变换.\n模型变换的目的是将模型从本地空间变换到世界空间当中，而视图变换的目的是将摄像机放置于坐标原点（以使裁剪和投影操作更简单高效），将模型从世界空间变换到相机空间(观察空间)，以便后续步骤的操作。");
             ShaderReferenceUtil.DrawOneContent("2.顶点着色（Vertex Shading）", "顶点着色阶段的目的在于确定模型上顶点处的光照效果,其输出结果（颜色、向量、纹理坐标等）会被发送到光栅化阶段以进行插值操作。");
             ShaderReferenceUtil.DrawOneContent("3.几何、曲面细分着色器", "【可选项】分为几何着色器(Geometry Shader)和曲面细分着色器(Tessellation Shader)，主要是对顶点进行增加与删除修改等操作.");
-            ShaderReferenceUtil.DrawOneContent("4.投影（Projection）", "投影阶段分为正交投影与透视投影.\n投影其实就是矩阵变换，最终会使坐标位于归一化的设备坐标NDC中，之所以叫投影就是因为最终Z轴坐标将被舍弃，也就是说此阶段主要的目的是将模型从三维空间投射到了二维的空间中的过程（但是坐标仍然是三维的，只是显示上看是二维的）。");
-            ShaderReferenceUtil.DrawOneContent("5.裁剪（Clipping）", "裁剪根据图元在视体的位置分为三种情况：\n1.当图元完全位于视体内部，那么它可以直接进行下一个阶段。\n2.当图元完全位于视体外部，则不会进入下一个阶段，直接丢弃。\n3.当图元部分位于视体内部，则需要对位于视体内的图元进行裁剪处理。\n最终的目的就是对部分位于视体内部的图元进行裁剪操作，以使处于视体外部不需要渲染的图元进行裁剪丢弃。");
+            ShaderReferenceUtil.DrawOneContent("4.投影（Projection）", "投影阶段分为正交投影与透视投影,将上面的观察空间变换到齐次裁剪空间。");
+            ShaderReferenceUtil.DrawOneContent("5.裁剪（Clipping）", "齐次裁剪空间会通过透视除法变换到归一化的设备坐标NDC中,然后再根据图元在视体的位置分为三种裁剪情况：\n1.当图元完全位于视体内部，那么它可以直接进行下一个阶段。\n2.当图元完全位于视体外部，则不会进入下一个阶段，直接丢弃。\n3.当图元部分位于视体内部，则需要对位于视体内的图元进行裁剪处理。\n最终的目的就是对部分位于视体内部的图元进行裁剪操作，以使处于视体外部不需要渲染的图元进行裁剪丢弃。");
             ShaderReferenceUtil.DrawOneContent("6.屏幕映射（Screen Mapping）", "屏幕映射阶段的主要目的，是将之前步骤得到的坐标映射到对应的屏幕坐标系上。");
 
             ShaderReferenceUtil.DrawTitle("光栅化阶段（Rasterizer Stage）");
