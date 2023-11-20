@@ -1,5 +1,8 @@
 ## 更新日志
 
+### v1.0.12
+* 更新#pragma指令
+
 ### v1.0.11
 * 新增ComputerShader的语法
 * 移除ErrorDebug(不太实用)

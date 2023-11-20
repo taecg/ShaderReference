@@ -2,7 +2,7 @@
  * @file         ShaderReferencePragma.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2019-01-17
- * @updated      2022-01-14
+ * @updated      2023-11-20
  *
  * @brief        Pass中的Pragma
  */
@@ -36,6 +36,7 @@ namespace taecg.tools.shaderReference
                 "● 4.5(相当于OpenGL ES3.1): 3.5 + compute + randomwrite\n" +
                 "● 4.6: 4.0 + cubearray + tesshw + tessellation\n" +
                 "● 5.0: 4.0 + compute + randomwrite + tesshw + tessellation");
+            ShaderReferenceUtil.DrawOneContent("#pragma target 2.0 KEYWORD", "此指令仅在指定Keyword激活时启用");
 
             ShaderReferenceUtil.DrawOneContent("#pragma require xxx", "表明shader需要的特性功能\n" +
                 "● interpolators10: 至少支持10个插值器(从顶点到片断)\n" +
@@ -57,6 +58,7 @@ namespace taecg.tools.shaderReference
                 "● tessellation: Tessellation hull/domain Shader\n" +
                 "● msaatex: 能够访问多采样纹理\n" +
                 "● framebufferfetch: 主要用于在延迟渲染中减少采样的带宽消耗");
+            ShaderReferenceUtil.DrawOneContent("#pragma require xxx : KEYWORD", "此指令仅在指定Keyword激活时启用.");
 
             switch (ShaderReferenceEditorWindow.mPipline)
             {
@@ -86,7 +88,7 @@ namespace taecg.tools.shaderReference
                 case ShaderReferenceEditorWindow.Pipline.URP:
                     ShaderReferenceUtil.DrawOneContent("#pragma prefer_hlslcc gles", "在OpenGL ES2.0中使用HLSLcc编译器,目前除了OpenGL ES2.0全都默认使用HLSLcc编译器.");
                     ShaderReferenceUtil.DrawOneContent("#include \"XXX.hlsl\"", "引入hlsl文件");
-                    ShaderReferenceUtil.DrawOneContent("#include_with_pragmas \"XXX.hlsl\"", "引入hlsl文件,同时也会使用hlsl文件中的#pragma指令");
+                    ShaderReferenceUtil.DrawOneContent("#include_with_pragmas \"XXX.hlsl\"", "引入hlsl文件,同时也会使用hlsl文件中的#pragma指令.(Caching Shader Preprocessor要开启)");
                     ShaderReferenceUtil.DrawOneContent("#pragma editor_sync_compilation", "强制某个Shader以同步的方式进行编绎(当此Shader的某个变体被第一次渲染时，在还没有编绎完成前不会渲染出来;如果不加此指令则会先用一个青色的临时占位进行渲染显示。)");
                     break;
             }
@@ -103,7 +105,8 @@ namespace taecg.tools.shaderReference
             ShaderReferenceUtil.DrawOneContent("#pragma skip_variants XXX01 XXX02...", "剔除指定的变体，可同时剔除多个");
             ShaderReferenceUtil.DrawOneContent("#pragma fragmentoption ARB_precision_hint_fastest", "最快的,意思就是会用低精度(一般是指fp16),以提升片段着色器的运行速度,减少时间.");
             ShaderReferenceUtil.DrawOneContent("#pragma fragmentoption ARB_precision_hint_nicest", "最佳的,会用高精度(一般是指fp32),可能会降低运行速度,增加时间.");
-            ShaderReferenceUtil.DrawOneContent("#pragma enable_d3d11_debug_symbols", "开启d3d11调试，加此命令后相关的名称与代码不会被剔除，便于在调试工具中进行查看分析");
+            ShaderReferenceUtil.DrawOneContent("#pragma enable_d3d11_debug_symbols", "开启调试，便于在调试工具中进行查看分析.但是会禁用Graphics API上的优化，建议调试完删除。");
+            ShaderReferenceUtil.DrawOneContent("#pragma skip_optimizations <gles/vulkan...>", "调试用,禁用某平台的优化,以便于在调试看到更接近原始意途的代码.但是会降低部分性能，建议调试完删除。");
             ShaderReferenceUtil.DrawOneContent("#pragma shader_feature EDITOR_VISUALIZATION", "开启Material Validation,Scene视图中的模式，用于查看超出范围的像素颜色");
             ShaderReferenceUtil.DrawOneContent("#pragma only_renderers", "仅编译指定平台的Shader\n" +
                 "1. d3d11 - Direct3D 11/12\n" +
@@ -119,6 +122,7 @@ namespace taecg.tools.shaderReference
                 "11.n3ds - Nintendo 3DS\n" +
                 "12.wiiu - Nintendo Wii U");
             ShaderReferenceUtil.DrawOneContent("#pragma exclude_renderers", "剔除掉指定平台的相关代码,列表参考上面");
+            ShaderReferenceUtil.DrawOneContent("#pragma once", "通常添加在通用的.hlsl文件中,以此来避免多次或者重复引用和编绎.(Caching Shader Preprocessor要开启)");
             ShaderReferenceUtil.DrawOneContent("#define NAME", "定义一个叫NAME的字段，在CG代码中可以通过#if defined(NAME)来判断走不同的分支。");
             ShaderReferenceUtil.DrawOneContent("#define NAME 1", "定义一个叫NAME的字段并且它的值为1.\n" +
                 "1.可以通过#if defined(NAME)来判断走不同的分支。\n" +

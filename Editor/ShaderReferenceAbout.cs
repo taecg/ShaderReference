@@ -2,7 +2,7 @@
  * @file         ShaderReferenceAbout.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2018-11-10
- * @updated      2023-10-21
+ * @updated      2023-11-20
  *
  * @brief       制作名单
  */
@@ -45,7 +45,7 @@ namespace taecg.tools.shaderReference
             labelStyle.fontStyle = FontStyle.Italic;
             labelStyle.alignment = TextAnchor.MiddleCenter;
             EditorGUILayout.TextArea("Git更新地址<https://github.com/taecg/ShaderReference.git>", labelStyle);
-            EditorGUILayout.LabelField("by taecg@qq.com  updated 2023/10/21", labelStyle);
+            EditorGUILayout.LabelField("by taecg@qq.com  updated 2023/11/20", labelStyle);
 
             GUIStyle style = new GUIStyle();
             style.alignment = TextAnchor.MiddleCenter;
