@@ -145,7 +145,8 @@ namespace taecg.tools.shaderReference
             "float noise1(float2 p)\n" +
             "{\n" +
             "   frac(sin(dot(uv, float2(127.1, 311.7))) * 43758.5453);\n" +
-            "}");
+            "}\n" +
+            "极简方式：frac(sin(x)*n)");
             ShaderReferenceUtil.DrawOneContent("随机(三通道)", "参数p的值为floor(i.uv.xy*24);\n" +
             "float3 noise3(float2 p)\n" +
             "{\n" +
