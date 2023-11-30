@@ -2,7 +2,7 @@
  * @file         ShaderReferenceMath.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2018-12-05
- * @updated      2022-06-13
+ * @updated      2023-11-30
  *
  * @brief        杂项，一些算法技巧
  */
@@ -78,7 +78,6 @@ namespace taecg.tools.shaderReference
                 "float atan2UV = 1 - abs(atan2(centerUV.g, centerUV.r) / 3.14);\n" +
                 "利用UV来实现极坐标.");
             ShaderReferenceUtil.DrawOneContent("将0-1的值控制在某个自定义的区间内", "frac(x*n+n);\n比如frac(i.uv*3.33+3.33);就是将0-1的uv值重新定义为0.33-0.66");
-            ShaderReferenceUtil.DrawOneContent("随机", "1.float2 uv = floor(i.uv.xy*24);\n2.frac(sin(dot(uv, float2(12.9898, 78.233))) * 43758.5453);\n或者:frac(sin(x)*n);");
             ShaderReferenceUtil.DrawOneContent("旋转", "fixed t=_Time.y;\nfloat2 rot= cos(t)*i.uv+sin(t)*float2(i.uv.y,-i.uv.x);");
             ShaderReferenceUtil.DrawOneContent("从中心缩放纹理", "half2 offset = (0.5-i.uv.xy)*_Offset;\nhalf4 baseMap = SAMPLE_TEXTURE2D(_MainTex, sampler_MainTex, i.uv.xy + offset);");
             ShaderReferenceUtil.DrawOneContent("序列图", "splitUV是把原有的UV重新定位到左上角的第一格UV上，_Sequence.xy表示的是纹理是由几x几的格子组成的,_Sequence.z表示的是走序列的快慢." +
@@ -142,6 +141,17 @@ namespace taecg.tools.shaderReference
                 "\treturn c.z * lerp (K.xxx, saturate (p - K.xxx), c.y);\n" +
                 "}");
             ShaderReferenceUtil.DrawOneContent("利用HSV对颜色进行调整", "half3 hsv = RGB2HSV(baseMap.rgb);\nbaseMap.rgb = HSV2RGB(float3((hsv.x + _HSVValue.x), (hsv.y * _HSVValue.y), (hsv.z * _HSVValue.z)));");
+            ShaderReferenceUtil.DrawOneContent("随机(单通道)", "参数p的值为floor(i.uv.xy*24);\n" +
+            "float noise1(float2 p)\n" +
+            "{\n" +
+            "   frac(sin(dot(uv, float2(127.1, 311.7))) * 43758.5453);\n" +
+            "}");
+            ShaderReferenceUtil.DrawOneContent("随机(三通道)", "参数p的值为floor(i.uv.xy*24);\n" +
+            "float3 noise3(float2 p)\n" +
+            "{\n" +
+            "   float3 q = float3(dot(p,float2(127.1,311.7)),dot(p,float2(269.5,183.3)),dot(p,float2(419.2,371.9)));\n" +
+            "   return frac(sin(q)*43758.5453)\n" +
+            "}");
 
             ShaderReferenceUtil.DrawTitle("深度");
             ShaderReferenceUtil.DrawOneContent("从深度重建世界坐标 ", "float2 screenUV = i.positionCS/_ScreenParams.xy;\n" +
