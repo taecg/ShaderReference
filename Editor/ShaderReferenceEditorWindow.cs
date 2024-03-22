@@ -2,13 +2,12 @@
  * @file         ShaderReferenceEditorWindow.cs
  * @author       Hongwei Li(taecg@qq.com)
  * @created      2018-11-10
- * @updated      2022-07-28
+ * @updated      2024-03-22
  *
  * @brief        着色器语法参考工具
  */
 
 #if UNITY_EDITOR
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,6 +16,7 @@ namespace taecg.tools.shaderReference
     public class ShaderReferenceEditorWindow : EditorWindow
     {
         #region 数据成员
+
         public enum Pipline
         {
             BuildIn = 0,
@@ -29,7 +29,7 @@ namespace taecg.tools.shaderReference
         public static string SEARCH_TEXT;
 
         public static Pipline mPipline = Pipline.BuildIn;
-        private string[] tabNames = new string[] { "Pipline", "Properties", "Semantics", "Tags", "Render State", "Compile Directives", "Transformations", "Other", "BuildIn Variables", "Predefined Macros", "Platform Differences", "Math", "Lighting", "Miscellaneous", "GLSL", "ComputerShader", "SubstancePainter", "About" };
+        private string[] tabNames = new string[] { "Pipline", "Properties", "Semantics", "Tags", "Render State", "Compile Directives", "Transformations", "Other", "BuildIn Variables", "Predefined Macros", "Platform Differences", "Math", "Lighting", "Miscellaneous", "GLSL", "ComputerShader", "SubstancePainter", "Experience", "About" };
         private int selectedTabID;
         private ShaderReferencePipline pipline;
         private ShaderReferenceProperties properties;
@@ -48,11 +48,14 @@ namespace taecg.tools.shaderReference
         private ShaderReferenceGLSL glsl;
         private ShaderReferenceComputerShader computerShader;
         private ShaderReferenceSubstancePainter substancePainter;
+        private ShaderReferenceExperience experience;
         private ShaderReferenceAbout about;
         private ShaderReferenceSearch search;
+
         #endregion
 
         #region 编缉器入口
+
         [MenuItem("Window/Shader参考大全... #R", false, -11)]
         public static void Open()
         {
@@ -70,9 +73,11 @@ namespace taecg.tools.shaderReference
                 window.Show();
             }
         }
+
         #endregion
 
         #region OnEnable/OnDisable
+
         void OnEnable()
         {
             mPipline = (Pipline)(EditorPrefs.HasKey("taecg_ShaderReferencemPipline") ? EditorPrefs.GetInt("taecg_ShaderReferencemPipline") : 0);
@@ -95,19 +100,23 @@ namespace taecg.tools.shaderReference
             glsl = ScriptableObject.CreateInstance<ShaderReferenceGLSL>();
             computerShader = ScriptableObject.CreateInstance<ShaderReferenceComputerShader>();
             substancePainter = ScriptableObject.CreateInstance<ShaderReferenceSubstancePainter>();
+            experience = ScriptableObject.CreateInstance<ShaderReferenceExperience>();
             about = ScriptableObject.CreateInstance<ShaderReferenceAbout>();
             search = ScriptableObject.CreateInstance<ShaderReferenceSearch>();
 
             ShaderReferenceUtil.SearchDic.Clear();
         }
+
         void OnDisable()
         {
             EditorPrefs.SetInt("taecg_ShaderReferencemPipline", (int)mPipline);
             EditorPrefs.SetInt("taecg_ShaderReferenceSelectedTabID", selectedTabID);
         }
+
         #endregion
 
         #region OnGUI
+
         void OnGUI()
         {
             DrawSearchGUI();
@@ -115,7 +124,9 @@ namespace taecg.tools.shaderReference
             if (string.IsNullOrEmpty(searchText))
             {
                 EditorGUILayout.BeginHorizontal();
+
                 #region [左侧边栏]
+
                 float _width = 150;
                 float _heigth = position.height - 30;
 
@@ -127,18 +138,23 @@ namespace taecg.tools.shaderReference
                 selectedTabID = GUILayout.SelectionGrid(selectedTabID, tabNames, 1);
 
                 EditorGUILayout.EndVertical();
+
                 #endregion
 
-                #region  [绘制右侧内容区]
+                #region [绘制右侧内容区]
+
                 EditorGUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.MinWidth(position.width - _width), GUILayout.MinHeight(_heigth));
                 DrawMainUI(selectedTabID);
                 EditorGUILayout.EndVertical();
+
                 #endregion
+
                 EditorGUILayout.EndVertical();
             }
             else
             {
                 #region [收集信息]
+
                 //- -！由于之前没有考虑搜索功能，所以只能在初始化时再全部画一次，以便读取所有的数据。
                 GUI.BeginClip(new Rect(0, 0, 0, 0));
                 if (isFirst)
@@ -146,7 +162,9 @@ namespace taecg.tools.shaderReference
                     CollectionInformation();
                     isFirst = false;
                 }
+
                 GUI.EndClip();
+
                 #endregion
 
                 search.DrawMainGUI();
@@ -154,9 +172,11 @@ namespace taecg.tools.shaderReference
 
             Repaint();
         }
+
         #endregion
 
         #region [搜索功能相关]
+
         void DrawSearchGUI()
         {
             GUILayout.BeginHorizontal();
@@ -167,14 +187,17 @@ namespace taecg.tools.shaderReference
                 GUIUtility.keyboardControl = 0;
                 searchText = string.Empty;
             }
+
             SEARCH_TEXT = searchText;
 
             GUILayout.Space(100f);
             GUILayout.EndHorizontal();
         }
+
         #endregion
 
         #region [绘制分级UI]
+
         void DrawMainUI(int selectedTabID)
         {
             switch (selectedTabID)
@@ -231,6 +254,9 @@ namespace taecg.tools.shaderReference
                     substancePainter.DrawMainGUI();
                     break;
                 case 17:
+                    experience.DrawMainGUI();
+                    break;
+                case 18:
                     about.DrawMainGUI();
                     break;
             }
@@ -258,8 +284,8 @@ namespace taecg.tools.shaderReference
             substancePainter.DrawMainGUI();
             about.DrawMainGUI();
         }
-        #endregion
 
+        #endregion
     }
 }
 #endif
