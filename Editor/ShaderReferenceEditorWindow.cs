@@ -1,13 +1,4 @@
-﻿/**
- * @file         ShaderReferenceEditorWindow.cs
- * @author       Hongwei Li(taecg@qq.com)
- * @created      2018-11-10
- * @updated      2024-03-22
- *
- * @brief        着色器语法参考工具
- */
-
-#if UNITY_EDITOR
+﻿#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 
@@ -28,10 +19,10 @@ namespace taecg.tools.shaderReference
         private string searchText;
         public static string SEARCH_TEXT;
 
-        public static Pipline mPipline = Pipline.BuildIn;
-        private string[] tabNames = new string[] { "Pipline", "Properties", "Semantics", "Tags", "Render State", "Compile Directives", "Transformations", "Other", "BuildIn Variables", "Predefined Macros", "Platform Differences", "Math", "Lighting", "Miscellaneous", "GLSL", "ComputerShader", "SubstancePainter", "Experience", "About" };
+        public static Pipline mPipeline = Pipline.BuildIn;
+        private readonly string[] tabNames = new string[] { "Pipeline", "Properties", "Semantics", "Tags", "Render State", "Compile Directives", "Transformations", "Other", "BuildIn Variables", "Predefined Macros", "Platform Differences", "Math", "Lighting", "Miscellaneous", "GLSL", "ComputerShader", "SubstancePainter", "Experience", "About" };
         private int selectedTabID;
-        private ShaderReferencePipline pipline;
+        private ShaderReferencePipline pipeline;
         private ShaderReferenceProperties properties;
         private ShaderReferenceSemantics semantics;
         private ShaderReferenceTags tags;
@@ -80,10 +71,10 @@ namespace taecg.tools.shaderReference
 
         void OnEnable()
         {
-            mPipline = (Pipline)(EditorPrefs.HasKey("taecg_ShaderReferencemPipline") ? EditorPrefs.GetInt("taecg_ShaderReferencemPipline") : 0);
+            mPipeline = (Pipline)(EditorPrefs.HasKey("taecg_ShaderReferencemPipline") ? EditorPrefs.GetInt("taecg_ShaderReferencemPipline") : 0);
             selectedTabID = EditorPrefs.HasKey("taecg_ShaderReferenceSelectedTabID") ? EditorPrefs.GetInt("taecg_ShaderReferenceSelectedTabID") : 0;
 
-            pipline = ScriptableObject.CreateInstance<ShaderReferencePipline>();
+            pipeline = ScriptableObject.CreateInstance<ShaderReferencePipline>();
             properties = ScriptableObject.CreateInstance<ShaderReferenceProperties>();
             semantics = ScriptableObject.CreateInstance<ShaderReferenceSemantics>();
             tags = ScriptableObject.CreateInstance<ShaderReferenceTags>();
@@ -109,7 +100,7 @@ namespace taecg.tools.shaderReference
 
         void OnDisable()
         {
-            EditorPrefs.SetInt("taecg_ShaderReferencemPipline", (int)mPipline);
+            EditorPrefs.SetInt("taecg_ShaderReferencemPipline", (int)mPipeline);
             EditorPrefs.SetInt("taecg_ShaderReferenceSelectedTabID", selectedTabID);
         }
 
@@ -132,7 +123,7 @@ namespace taecg.tools.shaderReference
 
                 EditorGUILayout.BeginVertical(EditorStyles.helpBox, GUILayout.MaxWidth(_width), GUILayout.MinHeight(_heigth));
                 //渲染管线选择
-                mPipline = (Pipline)EditorGUILayout.EnumPopup(mPipline);
+                mPipeline = (Pipline)EditorGUILayout.EnumPopup(mPipeline);
 
                 //功能选择
                 selectedTabID = GUILayout.SelectionGrid(selectedTabID, tabNames, 1);
@@ -203,7 +194,7 @@ namespace taecg.tools.shaderReference
             switch (selectedTabID)
             {
                 case 0:
-                    pipline.DrawMainGUI();
+                    pipeline.DrawMainGUI();
                     break;
                 case 1:
                     properties.DrawMainGUI();
@@ -265,7 +256,7 @@ namespace taecg.tools.shaderReference
         //收集所有信息用于搜索
         void CollectionInformation()
         {
-            pipline.DrawMainGUI();
+            pipeline.DrawMainGUI();
             properties.DrawMainGUI();
             semantics.DrawMainGUI();
             tags.DrawMainGUI();

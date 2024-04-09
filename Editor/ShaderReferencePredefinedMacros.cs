@@ -17,10 +17,13 @@ namespace taecg.tools.shaderReference
     public class ShaderReferencePredefinedMacros : EditorWindow
     {
         #region 数据成员
+
         private Vector2 scrollPos;
+
         #endregion
 
         #region [绘制界面]
+
         public void DrawMainGUI()
         {
             scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
@@ -56,16 +59,10 @@ namespace taecg.tools.shaderReference
             ShaderReferenceUtil.DrawOneContent("UNITY_UV_STARTS_AT_TOP", "一般此判断当前平台是DX(UV原点在左上角)还是OpenGL(UV原点在左下角)");
             ShaderReferenceUtil.DrawOneContent("UNITY_NO_SCREENSPACE_SHADOWS", "定义移动平台不进行Cascaded ScreenSpace Shadow.");
             ShaderReferenceUtil.DrawTitle("UI");
-            ShaderReferenceUtil.DrawOneContent("UNITY_UI_CLIP_RECT", "当父级物体有Rect Mask 2D组件时激活.\n" +
-                "需要先手动定义此变体#pragma multi_compile _ UNITY_UI_CLIP_RECT\n" +
-                "同时需要声明：_ClipRect(一个四维向量，四个分量分别表示RectMask2D的左下角点的xy坐标与右上角点的xy坐标.)\n" +
-                "UnityGet2DClipping (float2 position, float4 clipRect)即可实现遮罩.");
+            ShaderReferenceUtil.DrawOneContent("UNITY_UI_CLIP_RECT", "当父级物体有Rect Mask 2D组件时激活.\n" + "需要先手动定义此变体#pragma multi_compile _ UNITY_UI_CLIP_RECT\n" + "同时需要声明：_ClipRect(一个四维向量，四个分量分别表示RectMask2D的左下角点的xy坐标与右上角点的xy坐标.)\n" + "UnityGet2DClipping (float2 position, float4 clipRect)即可实现遮罩.");
 
             ShaderReferenceUtil.DrawTitle("Lighting");
-            ShaderReferenceUtil.DrawOneContent("UNITY_SHOULD_SAMPLE_SH", "是否进行计算SH（光照探针与顶点着色）\n" +
-                "-当静态与动态Lightmap启用时，此项不激活.\n" +
-                "-当静态与动态Lightmap没有启用时，此项激活.\n" +
-                "-除ForwardBase其它Pass都不激活，每个Pass需要指定UNITY_PASS_FORWARDADD、UNITY_PASS_SHADOWCASTER等.");
+            ShaderReferenceUtil.DrawOneContent("UNITY_SHOULD_SAMPLE_SH", "是否进行计算SH（光照探针与顶点着色）\n" + "-当静态与动态Lightmap启用时，此项不激活.\n" + "-当静态与动态Lightmap没有启用时，此项激活.\n" + "-除ForwardBase其它Pass都不激活，每个Pass需要指定UNITY_PASS_FORWARDADD、UNITY_PASS_SHADOWCASTER等.");
             ShaderReferenceUtil.DrawOneContent("UNITY_SAMPLE_FULL_SH_PER_PIXEL", "光照贴图uv和来自SHL2的环境颜色在顶点和像素内插器中共享,在启用静态lightmap和LIGHTPROBE_SH时，在像素着色器中执行完整的SH计算。");
             ShaderReferenceUtil.DrawOneContent("HANDLE_SHADOWS_BLENDING_IN_GI", "当同时定义了SHADOWS_SCREEN与LIGHTMAP_ON时开启.");
             ShaderReferenceUtil.DrawOneContent("UNITY_SHADOW_COORDS(N)", "定义一个float4类型的变量_ShadowCoord,语义为第N个TEXCOORD.");
@@ -73,7 +70,7 @@ namespace taecg.tools.shaderReference
             // ShaderReferenceUtil.DrawOneContent ("UNITY_TRANSFER_LIGHTING(o,v.texcoord1.xy);", "");
             ShaderReferenceUtil.DrawTitle("Other");
             ShaderReferenceUtil.DrawOneContent("UNITY_SHADER_NO_UPGRADE", "另Shader不自动更新API,只需把语句用注释的形式写在shader中任意位置即可.");
-            switch (ShaderReferenceEditorWindow.mPipline)
+            switch (ShaderReferenceEditorWindow.mPipeline)
             {
                 case ShaderReferenceEditorWindow.Pipline.BuildIn:
                     break;
@@ -83,8 +80,10 @@ namespace taecg.tools.shaderReference
                     ShaderReferenceUtil.DrawOneContent("SHADERGRAPH_PREVIEW", "在ShaderGraph中的Custom Function自义定节点上使用，用于判断是否处于SG面板预览中.");
                     break;
             }
+
             EditorGUILayout.EndScrollView();
         }
+
         #endregion
     }
 }

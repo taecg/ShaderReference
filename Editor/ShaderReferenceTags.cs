@@ -16,9 +16,11 @@ namespace taecg.tools.shaderReference
 {
     public class ShaderReferenceTags : EditorWindow
     {
-#region 数据成员
+        #region 数据成员
+
         private Vector2 scrollPos;
-#endregion
+
+        #endregion
 
         public void DrawMainGUI()
         {
@@ -26,14 +28,13 @@ namespace taecg.tools.shaderReference
             ShaderReferenceUtil.DrawTitle("Tags");
             ShaderReferenceUtil.DrawOneContent("Tags { \"TagName1\" = \"Value1\" \"TagName2\" = \"Value2\" }", "Tag的语法结构，通过Tags{}来表示需要添加的标识,大括号内可以添加多组Tag（所以才叫Tags嘛）,名称（TagName）和值（Value）是成对成对出现的，并且全部用字符串表示。");
 
-            switch (ShaderReferenceEditorWindow.mPipline)
+            switch (ShaderReferenceEditorWindow.mPipeline)
             {
                 case ShaderReferenceEditorWindow.Pipline.BuildIn:
                     break;
                 case ShaderReferenceEditorWindow.Pipline.URP:
                     ShaderReferenceUtil.DrawTitle("RenderPipeline");
-                    ShaderReferenceUtil.DrawOneContent("\"RenderPipeline\" = \"UniversalPipeline\"", "渲染管线标记，对应的管线C#代码UniversalRenderPipeline.cs中的Shader.globalRenderPipeline = UniversalPipeline,LightweightPipeline,只有带有UniversalPipeline或LightweightPipeline的Tag的SubShader才会生效." +
-                        "\n主要作用是用于标记当前这个SubShader是属于哪个管线下的.");
+                    ShaderReferenceUtil.DrawOneContent("\"RenderPipeline\" = \"UniversalPipeline\"", "渲染管线标记，对应的管线C#代码UniversalRenderPipeline.cs中的Shader.globalRenderPipeline = UniversalPipeline,LightweightPipeline,只有带有UniversalPipeline或LightweightPipeline的Tag的SubShader才会生效." + "\n主要作用是用于标记当前这个SubShader是属于哪个管线下的.");
                     break;
             }
 
@@ -46,7 +47,7 @@ namespace taecg.tools.shaderReference
             ShaderReferenceUtil.DrawOneContent("\"Queue\" = \"Overlay\"", "值为4000,此渲染队列用于叠加效果。最后渲染的东西应该放在这里（例如镜头光晕等）。");
 
             ShaderReferenceUtil.DrawTitle("LightMode(Pass中)");
-            switch (ShaderReferenceEditorWindow.mPipline)
+            switch (ShaderReferenceEditorWindow.mPipeline)
             {
                 case ShaderReferenceEditorWindow.Pipline.BuildIn:
                     ShaderReferenceUtil.DrawOneContent("ForwardBase", "用于前向渲染路径，支持环境光、主像素光、球谐光照与烘焙光照。");

@@ -17,7 +17,9 @@ namespace taecg.tools.shaderReference
     public class ShaderReferenceProperties : EditorWindow
     {
         #region 数据成员
+
         private Vector2 scrollPos;
+
         #endregion
 
         public void DrawMainGUI()
@@ -26,13 +28,10 @@ namespace taecg.tools.shaderReference
             ShaderReferenceUtil.DrawTitle("Properties");
             ShaderReferenceUtil.DrawOneContent("_Int(\"Int\", Int) = 1", "类型:整型\nCg/HLSL:int\n取决于在Cg/HLSL中是用float还是int来声明的，如果定义为float则实际使用的就是浮点数，字义为int会被识别为int类型（去小数点直接取整）");
 
-            switch (ShaderReferenceEditorWindow.mPipline)
+            switch (ShaderReferenceEditorWindow.mPipeline)
             {
                 case ShaderReferenceEditorWindow.Pipline.BuildIn:
-                    ShaderReferenceUtil.DrawOneContent("_Float (\"Float\", Float ) = 0", "类型:浮点数值\nCg/HLSL:可根据需要定义不同的浮点精度\n" +
-                    "float  32位精度,常用于世界坐标位置以及UV坐标\n" +
-                    "half  16位精度,范围[-6W,6W],常用于本地坐标位置,方向等\n" +
-                    "fixed  11位精度,范围[-2,2],1/265的小数精度,常用于纹理与颜色等低精度的情况");
+                    ShaderReferenceUtil.DrawOneContent("_Float (\"Float\", Float ) = 0", "类型:浮点数值\nCg/HLSL:可根据需要定义不同的浮点精度\n" + "float  32位精度,常用于世界坐标位置以及UV坐标\n" + "half  16位精度,范围[-6W,6W],常用于本地坐标位置,方向等\n" + "fixed  11位精度,范围[-2,2],1/265的小数精度,常用于纹理与颜色等低精度的情况");
                     break;
                 case ShaderReferenceEditorWindow.Pipline.URP:
                     ShaderReferenceUtil.DrawOneContent("_Float (\"Float\", Float ) = 0", "任何需要显式精度的函数，使用float或half限定符，当函数可以同时支持两者时，则使用real.");
@@ -43,22 +42,16 @@ namespace taecg.tools.shaderReference
             ShaderReferenceUtil.DrawOneContent("_Color(\"Color\", Color) = (1,1,1,1)", "类型:颜色属性\nCg/HLSL:float4/half4/fixed4");
             ShaderReferenceUtil.DrawOneContent("_Vector (\"Vector\", Vector) = (0,0,0,0)", "类型:四维向量\n在Properties中无法定义二维或者三维向量，只能定义四维向量");
             ShaderReferenceUtil.DrawOneContent("_MainTex (\"Texture\", 2D) = \"white\" {}", "类型:2D纹理\nCg/HLSL:sampler2D/sampler2D_half/sampler2D_float\n默认值有white、black、gray、bump以及空，空就是white");
-            switch (ShaderReferenceEditorWindow.mPipline)
+            switch (ShaderReferenceEditorWindow.mPipeline)
             {
                 case ShaderReferenceEditorWindow.Pipline.BuildIn:
-                    ShaderReferenceUtil.DrawOneContent("_MainTexArry (\"TextureArry\", 2DArray) = \"white\" {}", "类型:2D纹理数组\n" +
-                    "UNITY_DECLARE_TEX2DARRAY(_MainTexArry);\n" +
-                    "默认值有white、black、gray、bump以及空，空就是white\n" +
-                    "仅支持DX10、OpenGL3.0、Metal及以上版本");
+                    ShaderReferenceUtil.DrawOneContent("_MainTexArry (\"TextureArry\", 2DArray) = \"white\" {}", "类型:2D纹理数组\n" + "UNITY_DECLARE_TEX2DARRAY(_MainTexArry);\n" + "默认值有white、black、gray、bump以及空，空就是white\n" + "仅支持DX10、OpenGL3.0、Metal及以上版本");
                     break;
                 case ShaderReferenceEditorWindow.Pipline.URP:
-                    ShaderReferenceUtil.DrawOneContent("_MainTexArray (\"TextureArray\", 2DArray) = \"white\" {}", "类型:2D纹理数组\n" +
-                    "TEXTURE2D_ARRAY(_MainTexArray);  SAMPLER(sampler_MainTexArray);\n" +
-                    "SAMPLE_TEXTURE2D_ARRAY(_MainTexArry, sampler_MainTexArry, i.uv,_Index);\n" +
-                    "默认值有white、black、gray、bump以及空，空就是white\n" +
-                    "仅支持DX10、OpenGL3.0、Metal及以上版本");
+                    ShaderReferenceUtil.DrawOneContent("_MainTexArray (\"TextureArray\", 2DArray) = \"white\" {}", "类型:2D纹理数组\n" + "TEXTURE2D_ARRAY(_MainTexArray);  SAMPLER(sampler_MainTexArray);\n" + "SAMPLE_TEXTURE2D_ARRAY(_MainTexArry, sampler_MainTexArry, i.uv,_Index);\n" + "默认值有white、black、gray、bump以及空，空就是white\n" + "仅支持DX10、OpenGL3.0、Metal及以上版本");
                     break;
             }
+
             ShaderReferenceUtil.DrawOneContent("_MainTex3D (\"Texture\", 3D) = \"white\" {}", "类型:3D纹理\nCg/HLSL:sampler3D/sampler3D_half/sampler3D_float");
             ShaderReferenceUtil.DrawOneContent("_MainCube (\"Texture\", Cube) = \"white\" {}", "类型:立方体纹理\nCg/HLSL:samplerCUBE/samplerCUBE_half/samplerCUBE_float");
             ShaderReferenceUtil.DrawOneContent("_MainTex (\"Texture\", Any) = \"white\" {}", "类型:通用纹理\n支持2D、3D、Cube.");

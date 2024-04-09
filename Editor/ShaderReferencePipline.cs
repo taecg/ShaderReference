@@ -1,14 +1,4 @@
-﻿/**
- * @file         ShaderReferencePipline.cs
- * @author       Hongwei Li(taecg@qq.com)
- * @created      2018-11-17
- * @updated      2020-05-30
- *
- * @brief        渲染管线
- */
-
-#if UNITY_EDITOR
-using System.Collections.Generic;
+﻿#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
 
@@ -17,7 +7,9 @@ namespace taecg.tools.shaderReference
     public class ShaderReferencePipline : EditorWindow
     {
         #region 数据成员
+
         private Vector2 scrollPos;
+
         #endregion
 
         public void DrawMainGUI()

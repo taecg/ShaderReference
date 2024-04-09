@@ -17,7 +17,9 @@ namespace taecg.tools.shaderReference
     public class ShaderReferenceTransformation : EditorWindow
     {
         #region 数据成员
+
         private Vector2 scrollPos;
+
         #endregion
 
         public void DrawMainGUI()
@@ -38,7 +40,7 @@ namespace taecg.tools.shaderReference
             ShaderReferenceUtil.DrawOneContent("UNITY_MATRIX_IT_MV", "模型视图变换转置逆矩阵:transpose(mul(UNITY_MATRIX_I_M, UNITY_MATRIX_I_V))");
             ShaderReferenceUtil.DrawOneContent("UNITY_MATRIX_MVP", "模型视图投影变换矩阵:mul(UNITY_MATRIX_VP, UNITY_MATRIX_M)");
 
-            switch (ShaderReferenceEditorWindow.mPipline)
+            switch (ShaderReferenceEditorWindow.mPipeline)
             {
                 case ShaderReferenceEditorWindow.Pipline.BuildIn:
                     break;
@@ -50,11 +52,12 @@ namespace taecg.tools.shaderReference
                     // ShaderReferenceUtil.DrawOneContent("GetViewToHClipMatrix()", "视图空间到齐次裁剪空间的矩阵");
                     break;
             }
+
             ShaderReferenceUtil.DrawOneContent("unity_WorldToCamera", "世界空间到视图空间的矩阵");
             ShaderReferenceUtil.DrawOneContent("unity_CameraToWorld", "视图空间到世界空间的矩阵");
 
             ShaderReferenceUtil.DrawTitle("空间变换(方法)");
-            switch (ShaderReferenceEditorWindow.mPipline)
+            switch (ShaderReferenceEditorWindow.mPipeline)
             {
                 case ShaderReferenceEditorWindow.Pipline.BuildIn:
                     ShaderReferenceUtil.DrawOneContent("UnityObjectToClipPos(v.vertex)", "将模型空间下的顶点转换到齐次裁剪空间");
@@ -80,43 +83,20 @@ namespace taecg.tools.shaderReference
             }
 
             ShaderReferenceUtil.DrawTitle("基础变换矩阵");
-            ShaderReferenceUtil.DrawOneContent("平移矩阵", "float4x4 M_translate = float4x4(\n" +
-            "\t1, 0, 0, T.x,\n" +
-            "\t0, 1, 0, T.y,\n" +
-            "\t0, 0, 1, T.z,\n" +
-            "\t0, 0, 0, 1);");
+            ShaderReferenceUtil.DrawOneContent("平移矩阵", "float4x4 M_translate = float4x4(\n" + "\t1, 0, 0, T.x,\n" + "\t0, 1, 0, T.y,\n" + "\t0, 0, 1, T.z,\n" + "\t0, 0, 0, 1);");
 
-            ShaderReferenceUtil.DrawOneContent("缩放矩阵", "float4x4 M_scale = float4x4(\n" +
-            "\tS.x, 0, 0, 0,\n" +
-            "\t0, S.y, 0, 0,\n" +
-            "\t0, 0, S.z, 0,\n" +
-            "\t0, 0, 0, 1);");
+            ShaderReferenceUtil.DrawOneContent("缩放矩阵", "float4x4 M_scale = float4x4(\n" + "\tS.x, 0, 0, 0,\n" + "\t0, S.y, 0, 0,\n" + "\t0, 0, S.z, 0,\n" + "\t0, 0, 0, 1);");
 
-            ShaderReferenceUtil.DrawOneContent("旋转矩阵(X轴)", "float4x4 M_rotationX = float4x4(\n" +
-            "\t1, 0, 0, 0,\n" +
-            "\t0, cos(θ), -sin(θ), 0,\n" +
-            "\t0, sin(θ), cos(θ), 0,\n" +
-            "\t0, 0, 0, 1);");
+            ShaderReferenceUtil.DrawOneContent("旋转矩阵(X轴)", "float4x4 M_rotationX = float4x4(\n" + "\t1, 0, 0, 0,\n" + "\t0, cos(θ), -sin(θ), 0,\n" + "\t0, sin(θ), cos(θ), 0,\n" + "\t0, 0, 0, 1);");
 
-            ShaderReferenceUtil.DrawOneContent("旋转矩阵(Y轴)", "float4x4 M_rotationY = float4x4(\n" +
-            "\tcos(θ), 0, sin(θ), 0,\n" +
-            "\t0, 1, 0, 0,\n" +
-            "\t-sin(θ), 0, cos(θ), 0,\n" +
-            "\t0, 0, 0, 1);");
+            ShaderReferenceUtil.DrawOneContent("旋转矩阵(Y轴)", "float4x4 M_rotationY = float4x4(\n" + "\tcos(θ), 0, sin(θ), 0,\n" + "\t0, 1, 0, 0,\n" + "\t-sin(θ), 0, cos(θ), 0,\n" + "\t0, 0, 0, 1);");
 
-            ShaderReferenceUtil.DrawOneContent("旋转矩阵(Z轴)", "float4x4 M_rotationZ = float4x4(\n" +
-            "\tcos(θ), -sin(θ), 0, 0,\n" +
-            "\tsin(θ), cos(θ), 0, 0,\n" +
-            "\t0, 0, 1, 0,\n" +
-            "\t0, 0, 0, 1);");
+            ShaderReferenceUtil.DrawOneContent("旋转矩阵(Z轴)", "float4x4 M_rotationZ = float4x4(\n" + "\tcos(θ), -sin(θ), 0, 0,\n" + "\tsin(θ), cos(θ), 0, 0,\n" + "\t0, 0, 1, 0,\n" + "\t0, 0, 0, 1);");
 
             ShaderReferenceUtil.DrawTitle("变换规则");
-            ShaderReferenceUtil.DrawOneContent("将P点从A空间变换到B空间", 
-            "P_B = M_AB * P_A\n" +
-            "       = (M_BA)^-1 * P_A\n" +
-            "       = (M_BA)^T * P_A)");
+            ShaderReferenceUtil.DrawOneContent("将P点从A空间变换到B空间", "P_B = M_AB * P_A\n" + "       = (M_BA)^-1 * P_A\n" + "       = (M_BA)^T * P_A)");
 
-    
+
             EditorGUILayout.EndScrollView();
         }
     }

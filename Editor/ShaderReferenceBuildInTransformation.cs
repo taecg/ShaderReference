@@ -17,7 +17,9 @@ namespace taecg.tools.shaderReference
     public class ShaderReferenceBuildInTransformation : EditorWindow
     {
         #region 数据成员
+
         private Vector2 scrollPos;
+
         #endregion
 
         public void DrawMainGUI()
@@ -25,7 +27,7 @@ namespace taecg.tools.shaderReference
             scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
 
             ShaderReferenceUtil.DrawTitle("空间变换(矩阵)");
-            switch (ShaderReferenceEditorWindow.mPipline)
+            switch (ShaderReferenceEditorWindow.mPipeline)
             {
                 case ShaderReferenceEditorWindow.Pipline.BuildIn:
                     ShaderReferenceUtil.DrawOneContent("UNITY_MATRIX_MVP", "模型空间>>投影空间");
@@ -46,11 +48,12 @@ namespace taecg.tools.shaderReference
                     ShaderReferenceUtil.DrawOneContent("GetViewToHClipMatrix()", "观察空间到齐次裁剪空间的矩阵");
                     break;
             }
+
             ShaderReferenceUtil.DrawOneContent("unity_WorldToCamera", "世界空间到观察空间的矩阵");
             ShaderReferenceUtil.DrawOneContent("unity_CameraToWorld", "观察空间到世界空间的矩阵");
 
             ShaderReferenceUtil.DrawTitle("空间变换(方法)");
-            switch (ShaderReferenceEditorWindow.mPipline)
+            switch (ShaderReferenceEditorWindow.mPipeline)
             {
                 case ShaderReferenceEditorWindow.Pipline.BuildIn:
                     ShaderReferenceUtil.DrawOneContent("UnityObjectToClipPos(v.vertex)", "将模型空间下的顶点转换到齐次裁剪空间");
@@ -72,35 +75,15 @@ namespace taecg.tools.shaderReference
             }
 
             ShaderReferenceUtil.DrawTitle("基础变换矩阵");
-            ShaderReferenceUtil.DrawOneContent("平移矩阵", "float4x4 M_translate = float4x4(\n" +
-            "\t1, 0, 0, T.x,\n" +
-            "\t0, 1, 0, T.y,\n" +
-            "\t0, 0, 1, T.z,\n" +
-            "\t0, 0, 0, 1);");
+            ShaderReferenceUtil.DrawOneContent("平移矩阵", "float4x4 M_translate = float4x4(\n" + "\t1, 0, 0, T.x,\n" + "\t0, 1, 0, T.y,\n" + "\t0, 0, 1, T.z,\n" + "\t0, 0, 0, 1);");
 
-            ShaderReferenceUtil.DrawOneContent("缩放矩阵", "float4x4 M_scale = float4x4(\n" +
-            "\tS.x, 0, 0, 0,\n" +
-            "\t0, S.y, 0, 0,\n" +
-            "\t0, 0, S.z, 0,\n" +
-            "\t0, 0, 0, 1);");
+            ShaderReferenceUtil.DrawOneContent("缩放矩阵", "float4x4 M_scale = float4x4(\n" + "\tS.x, 0, 0, 0,\n" + "\t0, S.y, 0, 0,\n" + "\t0, 0, S.z, 0,\n" + "\t0, 0, 0, 1);");
 
-            ShaderReferenceUtil.DrawOneContent("旋转矩阵(X轴)", "float4x4 M_rotationX = float4x4(\n" +
-            "\t1, 0, 0, 0,\n" +
-            "\t0, cos(θ), sin(θ), 0,\n" +
-            "\t0, -sin(θ), cos(θ), 0,\n" +
-            "\t0, 0, 0, 1);");
+            ShaderReferenceUtil.DrawOneContent("旋转矩阵(X轴)", "float4x4 M_rotationX = float4x4(\n" + "\t1, 0, 0, 0,\n" + "\t0, cos(θ), sin(θ), 0,\n" + "\t0, -sin(θ), cos(θ), 0,\n" + "\t0, 0, 0, 1);");
 
-            ShaderReferenceUtil.DrawOneContent("旋转矩阵(Y轴)", "float4x4 M_rotationY = float4x4(\n" +
-            "\tcos(θ), 0, sin(θ), 0,\n" +
-            "\t0, 1, 0, 0,\n" +
-            "\t-sin(θy), 0, cos(θ), 0,\n" +
-            "\t0, 0, 0, 1);");
+            ShaderReferenceUtil.DrawOneContent("旋转矩阵(Y轴)", "float4x4 M_rotationY = float4x4(\n" + "\tcos(θ), 0, sin(θ), 0,\n" + "\t0, 1, 0, 0,\n" + "\t-sin(θy), 0, cos(θ), 0,\n" + "\t0, 0, 0, 1);");
 
-            ShaderReferenceUtil.DrawOneContent("旋转矩阵(Z轴)", "float4x4 M_rotationZ = float4x4(\n" +
-            "\tcos(θ), sin(θ), 0, 0,\n" +
-            "\t-sin(θ), cos(θ), 0, 0,\n" +
-            "\t0, 0, 1, 0,\n" +
-            "\t0, 0, 0, 1);");
+            ShaderReferenceUtil.DrawOneContent("旋转矩阵(Z轴)", "float4x4 M_rotationZ = float4x4(\n" + "\tcos(θ), sin(θ), 0, 0,\n" + "\t-sin(θ), cos(θ), 0, 0,\n" + "\t0, 0, 1, 0,\n" + "\t0, 0, 0, 1);");
 
             EditorGUILayout.EndScrollView();
         }
